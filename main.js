@@ -1,75 +1,76 @@
 (() => {
-  "use strict";
   var e = {
-      426: (e, t, n) => {
-        n.d(t, { Z: () => i });
-        var r = n(81),
-          o = n.n(r),
-          a = n(645),
-          c = n.n(a)()(o());
-        c.push([
+      426: (e, t, r) => {
+        "use strict";
+        r.d(t, { Z: () => i });
+        var n = r(81),
+          o = r.n(n),
+          a = r(645),
+          s = r.n(a)()(o());
+        s.push([
           e.id,
-          ".test{\n    height: 50px;\n    width: 50px;\n    background-color:red;\n}",
+          ".test {\n  height: 50px;\n  width: 50px;\n  background-color: red;\n}\n",
           "",
         ]);
-        const i = c;
+        const i = s;
       },
       645: (e) => {
+        "use strict";
         e.exports = function (e) {
           var t = [];
           return (
             (t.toString = function () {
               return this.map(function (t) {
-                var n = "",
-                  r = void 0 !== t[5];
+                var r = "",
+                  n = void 0 !== t[5];
                 return (
-                  t[4] && (n += "@supports (".concat(t[4], ") {")),
-                  t[2] && (n += "@media ".concat(t[2], " {")),
-                  r &&
-                    (n += "@layer".concat(
+                  t[4] && (r += "@supports (".concat(t[4], ") {")),
+                  t[2] && (r += "@media ".concat(t[2], " {")),
+                  n &&
+                    (r += "@layer".concat(
                       t[5].length > 0 ? " ".concat(t[5]) : "",
                       " {"
                     )),
-                  (n += e(t)),
-                  r && (n += "}"),
-                  t[2] && (n += "}"),
-                  t[4] && (n += "}"),
-                  n
+                  (r += e(t)),
+                  n && (r += "}"),
+                  t[2] && (r += "}"),
+                  t[4] && (r += "}"),
+                  r
                 );
               }).join("");
             }),
-            (t.i = function (e, n, r, o, a) {
+            (t.i = function (e, r, n, o, a) {
               "string" == typeof e && (e = [[null, e, void 0]]);
-              var c = {};
-              if (r)
+              var s = {};
+              if (n)
                 for (var i = 0; i < this.length; i++) {
-                  var s = this[i][0];
-                  null != s && (c[s] = !0);
+                  var c = this[i][0];
+                  null != c && (s[c] = !0);
                 }
               for (var u = 0; u < e.length; u++) {
-                var d = [].concat(e[u]);
-                (r && c[d[0]]) ||
+                var l = [].concat(e[u]);
+                (n && s[l[0]]) ||
                   (void 0 !== a &&
-                    (void 0 === d[5] ||
-                      (d[1] = "@layer"
-                        .concat(d[5].length > 0 ? " ".concat(d[5]) : "", " {")
-                        .concat(d[1], "}")),
-                    (d[5] = a)),
-                  n &&
-                    (d[2]
-                      ? ((d[1] = "@media "
-                          .concat(d[2], " {")
-                          .concat(d[1], "}")),
-                        (d[2] = n))
-                      : (d[2] = n)),
+                    (void 0 === l[5] ||
+                      (l[1] = "@layer"
+                        .concat(l[5].length > 0 ? " ".concat(l[5]) : "", " {")
+                        .concat(l[1], "}")),
+                    (l[5] = a)),
+                  r &&
+                    (l[2]
+                      ? ((l[1] = "@media "
+                          .concat(l[2], " {")
+                          .concat(l[1], "}")),
+                        (l[2] = r))
+                      : (l[2] = r)),
                   o &&
-                    (d[4]
-                      ? ((d[1] = "@supports ("
-                          .concat(d[4], ") {")
-                          .concat(d[1], "}")),
-                        (d[4] = o))
-                      : (d[4] = "".concat(o))),
-                  t.push(d));
+                    (l[4]
+                      ? ((l[1] = "@supports ("
+                          .concat(l[4], ") {")
+                          .concat(l[1], "}")),
+                        (l[4] = o))
+                      : (l[4] = "".concat(o))),
+                  t.push(l));
               }
             }),
             t
@@ -77,49 +78,51 @@
         };
       },
       81: (e) => {
+        "use strict";
         e.exports = function (e) {
           return e[1];
         };
       },
       379: (e) => {
+        "use strict";
         var t = [];
-        function n(e) {
-          for (var n = -1, r = 0; r < t.length; r++)
-            if (t[r].identifier === e) {
-              n = r;
+        function r(e) {
+          for (var r = -1, n = 0; n < t.length; n++)
+            if (t[n].identifier === e) {
+              r = n;
               break;
             }
-          return n;
+          return r;
         }
-        function r(e, r) {
-          for (var a = {}, c = [], i = 0; i < e.length; i++) {
-            var s = e[i],
-              u = r.base ? s[0] + r.base : s[0],
-              d = a[u] || 0,
-              p = "".concat(u, " ").concat(d);
-            a[u] = d + 1;
-            var l = n(p),
+        function n(e, n) {
+          for (var a = {}, s = [], i = 0; i < e.length; i++) {
+            var c = e[i],
+              u = n.base ? c[0] + n.base : c[0],
+              l = a[u] || 0,
+              p = "".concat(u, " ").concat(l);
+            a[u] = l + 1;
+            var d = r(p),
               f = {
-                css: s[1],
-                media: s[2],
-                sourceMap: s[3],
-                supports: s[4],
-                layer: s[5],
+                css: c[1],
+                media: c[2],
+                sourceMap: c[3],
+                supports: c[4],
+                layer: c[5],
               };
-            if (-1 !== l) t[l].references++, t[l].updater(f);
+            if (-1 !== d) t[d].references++, t[d].updater(f);
             else {
-              var v = o(f, r);
-              (r.byIndex = i),
+              var v = o(f, n);
+              (n.byIndex = i),
                 t.splice(i, 0, { identifier: p, updater: v, references: 1 });
             }
-            c.push(p);
+            s.push(p);
           }
-          return c;
+          return s;
         }
         function o(e, t) {
-          var n = t.domAPI(t);
+          var r = t.domAPI(t);
           return (
-            n.update(e),
+            r.update(e),
             function (t) {
               if (t) {
                 if (
@@ -130,94 +133,98 @@
                   t.layer === e.layer
                 )
                   return;
-                n.update((e = t));
-              } else n.remove();
+                r.update((e = t));
+              } else r.remove();
             }
           );
         }
         e.exports = function (e, o) {
-          var a = r((e = e || []), (o = o || {}));
+          var a = n((e = e || []), (o = o || {}));
           return function (e) {
             e = e || [];
-            for (var c = 0; c < a.length; c++) {
-              var i = n(a[c]);
+            for (var s = 0; s < a.length; s++) {
+              var i = r(a[s]);
               t[i].references--;
             }
-            for (var s = r(e, o), u = 0; u < a.length; u++) {
-              var d = n(a[u]);
-              0 === t[d].references && (t[d].updater(), t.splice(d, 1));
+            for (var c = n(e, o), u = 0; u < a.length; u++) {
+              var l = r(a[u]);
+              0 === t[l].references && (t[l].updater(), t.splice(l, 1));
             }
-            a = s;
+            a = c;
           };
         };
       },
       569: (e) => {
+        "use strict";
         var t = {};
-        e.exports = function (e, n) {
-          var r = (function (e) {
+        e.exports = function (e, r) {
+          var n = (function (e) {
             if (void 0 === t[e]) {
-              var n = document.querySelector(e);
+              var r = document.querySelector(e);
               if (
                 window.HTMLIFrameElement &&
-                n instanceof window.HTMLIFrameElement
+                r instanceof window.HTMLIFrameElement
               )
                 try {
-                  n = n.contentDocument.head;
+                  r = r.contentDocument.head;
                 } catch (e) {
-                  n = null;
+                  r = null;
                 }
-              t[e] = n;
+              t[e] = r;
             }
             return t[e];
           })(e);
-          if (!r)
+          if (!n)
             throw new Error(
               "Couldn't find a style target. This probably means that the value for the 'insert' parameter is invalid."
             );
-          r.appendChild(n);
+          n.appendChild(r);
         };
       },
       216: (e) => {
+        "use strict";
         e.exports = function (e) {
           var t = document.createElement("style");
           return e.setAttributes(t, e.attributes), e.insert(t, e.options), t;
         };
       },
-      565: (e, t, n) => {
+      565: (e, t, r) => {
+        "use strict";
         e.exports = function (e) {
-          var t = n.nc;
+          var t = r.nc;
           t && e.setAttribute("nonce", t);
         };
       },
       795: (e) => {
+        "use strict";
         e.exports = function (e) {
           var t = e.insertStyleElement(e);
           return {
-            update: function (n) {
-              !(function (e, t, n) {
-                var r = "";
-                n.supports && (r += "@supports (".concat(n.supports, ") {")),
-                  n.media && (r += "@media ".concat(n.media, " {"));
-                var o = void 0 !== n.layer;
+            update: function (r) {
+              !(function (e, t, r) {
+                var n = "";
+                r.supports && (n += "@supports (".concat(r.supports, ") {")),
+                  r.media && (n += "@media ".concat(r.media, " {"));
+                var o = void 0 !== r.layer;
                 o &&
-                  (r += "@layer".concat(
-                    n.layer.length > 0 ? " ".concat(n.layer) : "",
+                  (n += "@layer".concat(
+                    r.layer.length > 0 ? " ".concat(r.layer) : "",
                     " {"
                   )),
-                  (r += n.css),
-                  o && (r += "}"),
-                  n.media && (r += "}"),
-                  n.supports && (r += "}");
-                var a = n.sourceMap;
+                  (n += r.css),
+                  o && (n += "}"),
+                  r.media && (n += "}"),
+                  r.supports && (n += "}");
+                var a = r.sourceMap;
                 a &&
                   "undefined" != typeof btoa &&
-                  (r +=
+                  (n +=
                     "\n/*# sourceMappingURL=data:application/json;base64,".concat(
                       btoa(unescape(encodeURIComponent(JSON.stringify(a)))),
                       " */"
                     )),
-                  t.styleTagTransform(r, e, t.options);
-              })(t, e, n);
+                  t.styleTagTransform(n, e, t.options);
+              })(t, e, r);
             },
             remove: function () {
               !(function (e) {
@@ -229,6 +236,7 @@
         };
       },
       589: (e) => {
+        "use strict";
         e.exports = function (e, t) {
           if (t.styleSheet) t.styleSheet.cssText = e;
           else {
@@ -237,48 +245,60 @@
           }
         };
       },
+      497: (e) => {
+        e.exports = (e) => {
+          let t = 0;
+          return {
+            hit: function () {
+              return (t += 1), t >= e ? "You sunk my battleship" : null;
+            },
+          };
+        };
+      },
     },
     t = {};
-  function n(r) {
-    var o = t[r];
+  function r(n) {
+    var o = t[n];
     if (void 0 !== o) return o.exports;
-    var a = (t[r] = { id: r, exports: {} });
-    return e[r](a, a.exports, n), a.exports;
+    var a = (t[n] = { id: n, exports: {} });
+    return e[n](a, a.exports, r), a.exports;
   }
-  (n.n = (e) => {
+  (r.n = (e) => {
     var t = e && e.__esModule ? () => e.default : () => e;
-    return n.d(t, { a: t }), t;
+    return r.d(t, { a: t }), t;
   }),
-    (n.d = (e, t) => {
-      for (var r in t)
-        n.o(t, r) &&
-          !n.o(e, r) &&
-          Object.defineProperty(e, r, { enumerable: !0, get: t[r] });
+    (r.d = (e, t) => {
+      for (var n in t)
+        r.o(t, n) &&
+          !r.o(e, n) &&
+          Object.defineProperty(e, n, { enumerable: !0, get: t[n] });
     }),
-    (n.o = (e, t) => Object.prototype.hasOwnProperty.call(e, t)),
-    (n.nc = void 0),
+    (r.o = (e, t) => Object.prototype.hasOwnProperty.call(e, t)),
+    (r.nc = void 0),
     (() => {
-      var e = n(379),
-        t = n.n(e),
-        r = n(795),
-        o = n.n(r),
-        a = n(569),
-        c = n.n(a),
-        i = n(565),
-        s = n.n(i),
-        u = n(216),
-        d = n.n(u),
-        p = n(589),
-        l = n.n(p),
-        f = n(426),
+      "use strict";
+      var e = r(379),
+        t = r.n(e),
+        n = r(795),
+        o = r.n(n),
+        a = r(569),
+        s = r.n(a),
+        i = r(565),
+        c = r.n(i),
+        u = r(216),
+        l = r.n(u),
+        p = r(589),
+        d = r.n(p),
+        f = r(426),
         v = {};
-      (v.styleTagTransform = l()),
-        (v.setAttributes = s()),
-        (v.insert = c().bind(null, "head")),
+      (v.styleTagTransform = d()),
+        (v.setAttributes = c()),
+        (v.insert = s().bind(null, "head")),
         (v.domAPI = o()),
-        (v.insertStyleElement = d()),
+        (v.insertStyleElement = l()),
         t()(f.Z, v),
-        f.Z && f.Z.locals && f.Z.locals;
+        f.Z && f.Z.locals && f.Z.locals,
+        r(497);
       const h = document.createElement("div");
       h.classList.add("test"), document.body.appendChild(h);
     })();
