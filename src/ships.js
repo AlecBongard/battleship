@@ -16,7 +16,7 @@ const ship = (length) => {
       return "You sunk my battleship";
     }
 
-    return null;
+    return "Hit";
   }
 
   return {
