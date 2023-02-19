@@ -45,7 +45,7 @@ test("Do not allow placement outside of game board", () => {
   expect(newBoard.placeShip(3, [2, 9], [2, 11])).toBe("Invalid ship placement");
 });
 
-test('Missed attack returns "miss"', () => {
+test('Missed attack returns "Miss"', () => {
   const newBoard = gameboard();
 
   expect(newBoard.receiveAttack([0, 0])).toBe("Miss");
@@ -78,6 +78,8 @@ test("Hits are reflected on board", () => {
 test("A ship sinks when hit enough times", () => {
   const newBoard = gameboard();
   newBoard.placeShip(3, [0, 0], [0, 2]);
+  newBoard.placeShip(3, [1, 0], [1, 2]);
+
   newBoard.receiveAttack([0, 1]);
   newBoard.receiveAttack([0, 2]);
 
@@ -86,6 +88,7 @@ test("A ship sinks when hit enough times", () => {
 
 test("Attacking the same empty square twice returns an invalid attack message", () => {
   const newBoard = gameboard();
+  newBoard.placeShip(3, [0, 0], [0, 2]);
 
   newBoard.receiveAttack([1, 1]);
 
@@ -102,4 +105,44 @@ test("Attacking the same ship square twice returns an invalid attack message", (
   expect(newBoard.receiveAttack([0, 0])).toBe(
     "Invalid attack: square has already been attacked"
   );
+});
+
+test("Attacking the same ship square mulitple times does not result in sinking", ()=>{
+    const newBoard = gameboard();
+    newBoard.placeShip(3, [0, 0], [0, 2]);
+    newBoard.receiveAttack([0, 0]);
+    newBoard.receiveAttack([0, 0]);
+    newBoard.receiveAttack([0, 0]);
+    newBoard.receiveAttack([0, 0]);
+    newBoard.receiveAttack([0, 0]);
+
+    expect(newBoard.receiveAttack([0, 1])).toBe(
+        "Hit"
+    );
+});
+
+test("gameboard reports when all ships have been sunk", ()=>{
+    const newBoard = gameboard();
+    newBoard.placeShip(3, [0, 0], [0, 2]);
+    newBoard.receiveAttack([0, 0]);
+    newBoard.receiveAttack([0, 1]);
+    
+    expect(newBoard.receiveAttack([0, 2])).toBe(
+        "All ships have been sunk."
+    )
+});
+
+test("gameboard does not prematurely report all ships sunk", ()=>{
+    const newBoard = gameboard();
+    newBoard.placeShip(2, [1, 2], [1, 3])
+    newBoard.placeShip(3, [0, 0], [0, 2]);
+    newBoard.receiveAttack([0, 0]);
+    newBoard.receiveAttack([0, 1]);
+    
+    expect(newBoard.receiveAttack([0, 2])).toBe(
+        "You sunk my battleship"
+    );
+});
+
+test("ships cannot be placed on occupied squares", ()=>{
 });
