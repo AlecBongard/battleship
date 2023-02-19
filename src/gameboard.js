@@ -34,17 +34,17 @@ const gameboard = () => {
     return "Ship placed";
   }
 
-  function _allSunk(){
+  function _allSunk() {
     let sunk = true;
 
-    board.forEach(row=>{
-        row.forEach(square=>{
-            if(square && typeof square === "object"){
-                if(square.isHit === false){
-                    sunk = false;
-                }
-            }
-        });
+    board.forEach((row) => {
+      row.forEach((square) => {
+        if (square && typeof square === "object") {
+          if (square.isHit === false) {
+            sunk = false;
+          }
+        }
+      });
     });
 
     return sunk;
@@ -68,10 +68,10 @@ const gameboard = () => {
 
     attackSquare.isHit = true;
 
-    const hitMsg =  attackSquare.ship.hit();
+    const hitMsg = attackSquare.ship.hit();
 
-    if(_allSunk()){
-        return "All ships have been sunk.";
+    if (_allSunk()) {
+      return "All ships have been sunk.";
     }
 
     return hitMsg;
