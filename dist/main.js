@@ -1,54 +1,54 @@
 (() => {
-  var t = {
-      426: (t, e, r) => {
+  var e = {
+      426: (e, t, r) => {
         "use strict";
-        r.d(e, { Z: () => c });
+        r.d(t, { Z: () => i });
         var n = r(81),
           o = r.n(n),
           a = r(645),
           s = r.n(a)()(o());
         s.push([
-          t.id,
-          ".test {\n  height: 50px;\n  width: 50px;\n  background-color: red;\n}\n",
+          e.id,
+          ":root{\n  --view-size: calc(100vw / 3);\n  --square-size: calc(var(--view-size) / 10);\n}\n\n.test {\n  height: 50px;\n  width: 50px;\n  background-color: red;\n}\n\n.board{\n  display: flex;\n  justify-content: space-around;\n  width: 100%;\n}\n\n.map{\n  height: var(--view-size);\n  width: var(--view-size);\n  display: flex;\n  flex-wrap: wrap;\n}\n\n.map-square{\n  box-sizing: border-box;\n  height: var(--square-size);\n  width: var(--square-size);\n  border: 1px solid black;\n  background-color: red;\n}\n\n.own-board{\n  height: var(--view-size);\n  width: var(--view-size);\n  display: flex;\n  flex-wrap: wrap;\n}\n\n.board-square{\n  box-sizing: border-box;\n  height: var(--square-size);\n  width: var(--square-size);\n  border: 1px solid black;\n  background-color: red;\n}\n\n\n",
           "",
         ]);
-        const c = s;
+        const i = s;
       },
-      645: (t) => {
+      645: (e) => {
         "use strict";
-        t.exports = function (t) {
-          var e = [];
+        e.exports = function (e) {
+          var t = [];
           return (
-            (e.toString = function () {
-              return this.map(function (e) {
+            (t.toString = function () {
+              return this.map(function (t) {
                 var r = "",
-                  n = void 0 !== e[5];
+                  n = void 0 !== t[5];
                 return (
-                  e[4] && (r += "@supports (".concat(e[4], ") {")),
-                  e[2] && (r += "@media ".concat(e[2], " {")),
+                  t[4] && (r += "@supports (".concat(t[4], ") {")),
+                  t[2] && (r += "@media ".concat(t[2], " {")),
                   n &&
                     (r += "@layer".concat(
-                      e[5].length > 0 ? " ".concat(e[5]) : "",
+                      t[5].length > 0 ? " ".concat(t[5]) : "",
                       " {"
                     )),
-                  (r += t(e)),
+                  (r += e(t)),
                   n && (r += "}"),
-                  e[2] && (r += "}"),
-                  e[4] && (r += "}"),
+                  t[2] && (r += "}"),
+                  t[4] && (r += "}"),
                   r
                 );
               }).join("");
             }),
-            (e.i = function (t, r, n, o, a) {
-              "string" == typeof t && (t = [[null, t, void 0]]);
+            (t.i = function (e, r, n, o, a) {
+              "string" == typeof e && (e = [[null, e, void 0]]);
               var s = {};
               if (n)
-                for (var c = 0; c < this.length; c++) {
-                  var i = this[c][0];
-                  null != i && (s[i] = !0);
+                for (var i = 0; i < this.length; i++) {
+                  var c = this[i][0];
+                  null != c && (s[c] = !0);
                 }
-              for (var u = 0; u < t.length; u++) {
-                var l = [].concat(t[u]);
+              for (var u = 0; u < e.length; u++) {
+                var l = [].concat(e[u]);
                 (n && s[l[0]]) ||
                   (void 0 !== a &&
                     (void 0 === l[5] ||
@@ -70,110 +70,110 @@
                           .concat(l[1], "}")),
                         (l[4] = o))
                       : (l[4] = "".concat(o))),
-                  e.push(l));
+                  t.push(l));
               }
             }),
-            e
+            t
           );
         };
       },
-      81: (t) => {
+      81: (e) => {
         "use strict";
-        t.exports = function (t) {
-          return t[1];
+        e.exports = function (e) {
+          return e[1];
         };
       },
-      379: (t) => {
+      379: (e) => {
         "use strict";
-        var e = [];
-        function r(t) {
-          for (var r = -1, n = 0; n < e.length; n++)
-            if (e[n].identifier === t) {
+        var t = [];
+        function r(e) {
+          for (var r = -1, n = 0; n < t.length; n++)
+            if (t[n].identifier === e) {
               r = n;
               break;
             }
           return r;
         }
-        function n(t, n) {
-          for (var a = {}, s = [], c = 0; c < t.length; c++) {
-            var i = t[c],
-              u = n.base ? i[0] + n.base : i[0],
+        function n(e, n) {
+          for (var a = {}, s = [], i = 0; i < e.length; i++) {
+            var c = e[i],
+              u = n.base ? c[0] + n.base : c[0],
               l = a[u] || 0,
               d = "".concat(u, " ").concat(l);
             a[u] = l + 1;
             var p = r(d),
               f = {
-                css: i[1],
-                media: i[2],
-                sourceMap: i[3],
-                supports: i[4],
-                layer: i[5],
+                css: c[1],
+                media: c[2],
+                sourceMap: c[3],
+                supports: c[4],
+                layer: c[5],
               };
-            if (-1 !== p) e[p].references++, e[p].updater(f);
+            if (-1 !== p) t[p].references++, t[p].updater(f);
             else {
-              var h = o(f, n);
-              (n.byIndex = c),
-                e.splice(c, 0, { identifier: d, updater: h, references: 1 });
+              var v = o(f, n);
+              (n.byIndex = i),
+                t.splice(i, 0, { identifier: d, updater: v, references: 1 });
             }
             s.push(d);
           }
           return s;
         }
-        function o(t, e) {
-          var r = e.domAPI(e);
+        function o(e, t) {
+          var r = t.domAPI(t);
           return (
-            r.update(t),
-            function (e) {
-              if (e) {
+            r.update(e),
+            function (t) {
+              if (t) {
                 if (
-                  e.css === t.css &&
-                  e.media === t.media &&
-                  e.sourceMap === t.sourceMap &&
-                  e.supports === t.supports &&
-                  e.layer === t.layer
+                  t.css === e.css &&
+                  t.media === e.media &&
+                  t.sourceMap === e.sourceMap &&
+                  t.supports === e.supports &&
+                  t.layer === e.layer
                 )
                   return;
-                r.update((t = e));
+                r.update((e = t));
               } else r.remove();
             }
           );
         }
-        t.exports = function (t, o) {
-          var a = n((t = t || []), (o = o || {}));
-          return function (t) {
-            t = t || [];
+        e.exports = function (e, o) {
+          var a = n((e = e || []), (o = o || {}));
+          return function (e) {
+            e = e || [];
             for (var s = 0; s < a.length; s++) {
-              var c = r(a[s]);
-              e[c].references--;
+              var i = r(a[s]);
+              t[i].references--;
             }
-            for (var i = n(t, o), u = 0; u < a.length; u++) {
+            for (var c = n(e, o), u = 0; u < a.length; u++) {
               var l = r(a[u]);
-              0 === e[l].references && (e[l].updater(), e.splice(l, 1));
+              0 === t[l].references && (t[l].updater(), t.splice(l, 1));
             }
-            a = i;
+            a = c;
           };
         };
       },
-      569: (t) => {
+      569: (e) => {
         "use strict";
-        var e = {};
-        t.exports = function (t, r) {
-          var n = (function (t) {
-            if (void 0 === e[t]) {
-              var r = document.querySelector(t);
+        var t = {};
+        e.exports = function (e, r) {
+          var n = (function (e) {
+            if (void 0 === t[e]) {
+              var r = document.querySelector(e);
               if (
                 window.HTMLIFrameElement &&
                 r instanceof window.HTMLIFrameElement
               )
                 try {
                   r = r.contentDocument.head;
-                } catch (t) {
+                } catch (e) {
                   r = null;
                 }
-              e[t] = r;
+              t[e] = r;
             }
-            return e[t];
-          })(t);
+            return t[e];
+          })(e);
           if (!n)
             throw new Error(
               "Couldn't find a style target. This probably means that the value for the 'insert' parameter is invalid."
@@ -181,27 +181,27 @@
           n.appendChild(r);
         };
       },
-      216: (t) => {
+      216: (e) => {
         "use strict";
-        t.exports = function (t) {
-          var e = document.createElement("style");
-          return t.setAttributes(e, t.attributes), t.insert(e, t.options), e;
+        e.exports = function (e) {
+          var t = document.createElement("style");
+          return e.setAttributes(t, e.attributes), e.insert(t, e.options), t;
         };
       },
-      565: (t, e, r) => {
+      565: (e, t, r) => {
         "use strict";
-        t.exports = function (t) {
-          var e = r.nc;
-          e && t.setAttribute("nonce", e);
+        e.exports = function (e) {
+          var t = r.nc;
+          t && e.setAttribute("nonce", t);
         };
       },
-      795: (t) => {
+      795: (e) => {
         "use strict";
-        t.exports = function (t) {
-          var e = t.insertStyleElement(t);
+        e.exports = function (e) {
+          var t = e.insertStyleElement(e);
           return {
             update: function (r) {
-              !(function (t, e, r) {
+              !(function (e, t, r) {
                 var n = "";
                 r.supports && (n += "@supports (".concat(r.supports, ") {")),
                   r.media && (n += "@media ".concat(r.media, " {"));
@@ -223,76 +223,75 @@
                       btoa(unescape(encodeURIComponent(JSON.stringify(a)))),
                       " */"
                     )),
-                  e.styleTagTransform(n, t, e.options);
-              })(e, t, r);
+                  t.styleTagTransform(n, e, t.options);
+              })(t, e, r);
             },
             remove: function () {
-              !(function (t) {
-                if (null === t.parentNode) return !1;
-                t.parentNode.removeChild(t);
-              })(e);
+              !(function (e) {
+                if (null === e.parentNode) return !1;
+                e.parentNode.removeChild(e);
+              })(t);
             },
           };
         };
       },
-      589: (t) => {
+      589: (e) => {
         "use strict";
-        t.exports = function (t, e) {
-          if (e.styleSheet) e.styleSheet.cssText = t;
+        e.exports = function (e, t) {
+          if (t.styleSheet) t.styleSheet.cssText = e;
           else {
-            for (; e.firstChild; ) e.removeChild(e.firstChild);
-            e.appendChild(document.createTextNode(t));
+            for (; t.firstChild; ) t.removeChild(t.firstChild);
+            t.appendChild(document.createTextNode(e));
           }
         };
       },
-      181: (t) => {
+      181: (e) => {
         document.querySelector(".board");
-        const e = document.querySelector(".map");
-        document.querySelector(".own-board"),
-          (t.exports = () => ({
-            drawBoard: function () {
-              for (let t = 0; t < 100; t += 1) {
-                const r = document.createElement("div");
-                r.classList.add("map-square");
-                const n = Math.floor(t / 10),
-                  o = t % 10;
-                r.setAttribute("data-mapcoord", `[${n}, ${o}]`),
-                  e.appendChild(r);
-              }
-              for (let t = 0; t < 100; t += 1) {
-                const r = document.createElement("div");
-                r.classList.add("board-square");
-                const n = Math.floor(t / 10),
-                  o = t % 10;
-                r.setAttribute("data-boardcoord", `[${n}, ${o}]`),
-                  e.appendChild(r);
-              }
-            },
-          }));
+        const t = document.querySelector(".map"),
+          r = document.querySelector(".own-board");
+        e.exports = () => ({
+          drawBoard: function () {
+            for (let e = 0; e < 100; e += 1) {
+              const r = document.createElement("div");
+              r.classList.add("map-square");
+              const n = Math.floor(e / 10),
+                o = e % 10;
+              r.setAttribute("data-mapcoord", `[${n}, ${o}]`), t.appendChild(r);
+            }
+            for (let e = 0; e < 100; e += 1) {
+              const t = document.createElement("div");
+              t.classList.add("board-square");
+              const n = Math.floor(e / 10),
+                o = e % 10;
+              t.setAttribute("data-boardcoord", `[${n}, ${o}]`),
+                r.appendChild(t);
+            }
+          },
+        });
       },
-      498: (t, e, r) => {
+      498: (e, t, r) => {
         const n = r(497);
-        t.exports = () => {
-          const t = [];
+        e.exports = () => {
+          const e = [];
           return (
             (function () {
-              for (let e = 0; e < 10; e += 1) t[e] = new Array(10).fill(null);
+              for (let t = 0; t < 10; t += 1) e[t] = new Array(10).fill(null);
             })(),
             {
-              board: t,
-              placeShip: function (e, r, o) {
+              board: e,
+              placeShip: function (t, r, o) {
                 const a = [...r, ...o];
-                for (let t = 0; t < a.length; t += 1)
-                  if (a[t] > 10 || a[t] < 0) return "Invalid ship placement";
-                const s = n(e);
-                for (let e = r[0]; o[0] - e >= 0; e += 1)
+                for (let e = 0; e < a.length; e += 1)
+                  if (a[e] > 10 || a[e] < 0) return "Invalid ship placement";
+                const s = n(t);
+                for (let t = r[0]; o[0] - t >= 0; t += 1)
                   for (let n = r[1]; o[1] - n >= 0; n += 1)
-                    t[e][n] = { ship: s, isHit: !1 };
+                    e[t][n] = { ship: s, isHit: !1 };
                 return "Ship placed";
               },
-              receiveAttack: function (e) {
-                const r = t[e[0]][e[1]];
-                if (!r) return (t[e[0]][e[1]] = "miss"), "Miss";
+              receiveAttack: function (t) {
+                const r = e[t[0]][t[1]];
+                if (!r) return (e[t[0]][t[1]] = "miss"), "Miss";
                 if ("miss" === r)
                   return "Invalid attack: square has already been attacked";
                 if ("object" == typeof r && r.isHit)
@@ -300,14 +299,14 @@
                 r.isHit = !0;
                 const n = r.ship.hit();
                 return (function () {
-                  let e = !0;
+                  let t = !0;
                   return (
-                    t.forEach((t) => {
-                      t.forEach((t) => {
-                        t && "object" == typeof t && !1 === t.isHit && (e = !1);
+                    e.forEach((e) => {
+                      e.forEach((e) => {
+                        e && "object" == typeof e && !1 === e.isHit && (t = !1);
                       });
                     }),
-                    e
+                    t
                   );
                 })()
                   ? "All ships have been sunk."
@@ -317,85 +316,85 @@
           );
         };
       },
-      507: (t) => {
-        t.exports = (t) => {
-          const e = [];
-          function r(t, r) {
-            const n = t.receiveAttack(r);
-            return (e[r[0]][r[1]] = "Miss" === n ? n.toLowerCase() : "hit"), n;
+      507: (e) => {
+        e.exports = (e) => {
+          const t = [];
+          function r(e, r) {
+            const n = e.receiveAttack(r);
+            return (t[r[0]][r[1]] = "Miss" === n ? n.toLowerCase() : "hit"), n;
           }
           !(function () {
-            for (let t = 0; t < 10; t += 1) e[t] = new Array(10).fill(null);
+            for (let e = 0; e < 10; e += 1) t[e] = new Array(10).fill(null);
           })();
           const n = (() => {
-            const t = [];
-            for (let e = 0; e < 10; e += 1)
-              for (let r = 0; r < 10; r += 1) t.push([e, r]);
-            return t;
+            const e = [];
+            for (let t = 0; t < 10; t += 1)
+              for (let r = 0; r < 10; r += 1) e.push([t, r]);
+            return e;
           })();
           return {
-            map: e,
+            map: t,
             attack: r,
-            comMove: function (t) {
-              const e = Math.floor(Math.random() * n.length),
-                o = n[e];
-              return n.splice(e, 1), r(t, o);
+            comMove: function (e) {
+              const t = Math.floor(Math.random() * n.length),
+                o = n[t];
+              return n.splice(t, 1), r(e, o);
             },
           };
         };
       },
-      497: (t) => {
-        t.exports = (t) => {
-          let e = 0;
+      497: (e) => {
+        e.exports = (e) => {
+          let t = 0;
           return {
             hit: function () {
-              return (e += 1), e >= t ? "You sunk my battleship" : "Hit";
+              return (t += 1), t >= e ? "You sunk my battleship" : "Hit";
             },
           };
         };
       },
     },
-    e = {};
+    t = {};
   function r(n) {
-    var o = e[n];
+    var o = t[n];
     if (void 0 !== o) return o.exports;
-    var a = (e[n] = { id: n, exports: {} });
-    return t[n](a, a.exports, r), a.exports;
+    var a = (t[n] = { id: n, exports: {} });
+    return e[n](a, a.exports, r), a.exports;
   }
-  (r.n = (t) => {
-    var e = t && t.__esModule ? () => t.default : () => t;
-    return r.d(e, { a: e }), e;
+  (r.n = (e) => {
+    var t = e && e.__esModule ? () => e.default : () => e;
+    return r.d(t, { a: t }), t;
   }),
-    (r.d = (t, e) => {
-      for (var n in e)
-        r.o(e, n) &&
-          !r.o(t, n) &&
-          Object.defineProperty(t, n, { enumerable: !0, get: e[n] });
+    (r.d = (e, t) => {
+      for (var n in t)
+        r.o(t, n) &&
+          !r.o(e, n) &&
+          Object.defineProperty(e, n, { enumerable: !0, get: t[n] });
     }),
-    (r.o = (t, e) => Object.prototype.hasOwnProperty.call(t, e)),
+    (r.o = (e, t) => Object.prototype.hasOwnProperty.call(e, t)),
     (r.nc = void 0),
     (() => {
       "use strict";
-      var t = r(379),
-        e = r.n(t),
+      var e = r(379),
+        t = r.n(e),
         n = r(795),
         o = r.n(n),
         a = r(569),
         s = r.n(a),
-        c = r(565),
-        i = r.n(c),
+        i = r(565),
+        c = r.n(i),
         u = r(216),
         l = r.n(u),
         d = r(589),
         p = r.n(d),
         f = r(426),
-        h = {};
-      (h.styleTagTransform = p()),
-        (h.setAttributes = i()),
-        (h.insert = s().bind(null, "head")),
-        (h.domAPI = o()),
-        (h.insertStyleElement = l()),
-        e()(f.Z, h),
+        v = {};
+      (v.styleTagTransform = p()),
+        (v.setAttributes = c()),
+        (v.insert = s().bind(null, "head")),
+        (v.domAPI = o()),
+        (v.insertStyleElement = l()),
+        t()(f.Z, v),
         f.Z && f.Z.locals && f.Z.locals,
         r(497),
         r(498),

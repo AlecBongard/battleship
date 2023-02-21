@@ -3,6 +3,7 @@ const map = document.querySelector(".map");
 const ownBoard = document.querySelector(".own-board");
 
 const update = () => {
+  // generated from scratch, but will later use board and map from gameboard and player
   function drawBoard() {
     for (let i = 0; i < 100; i += 1) {
       const square = document.createElement("div");
@@ -25,7 +26,7 @@ const update = () => {
 
       square.setAttribute("data-boardcoord", `[${row}, ${col}]`);
 
-      map.appendChild(square);
+      ownBoard.appendChild(square);
     }
   }
 
