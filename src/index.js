@@ -1,8 +1,10 @@
 import "./style.css";
 
 const ship = require("./ships");
+const gameboard = require("./gameboard");
+const player = require("./player");
+const DOMUpdate = require("./DOMUpdate.js");
 
-const elt = document.createElement("div");
+const update = DOMUpdate();
 
-elt.classList.add("test");
-document.body.appendChild(elt);
+update.drawBoard();
