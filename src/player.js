@@ -19,12 +19,23 @@ const player = (com) => {
     return attackMsg;
   }
 
+  // list of legal moves which is updated every time comMove is called
+  const _legalMoves = (() => {
+    const moveList = [];
+    for (let row = 0; row < 10; row += 1) {
+      for (let col = 0; col < 10; col += 1) {
+        moveList.push([row, col]);
+      }
+    }
+
+    return moveList;
+  })();
+
   function comMove(targetBoard) {
     // choose row and column of attacked square randomly
-    const row = Math.floor(Math.random() * 9);
-    const col = Math.floor(Math.random() * 9);
-
-    const attackSquare = [row, col];
+    const moveIndex = Math.floor(Math.random() * _legalMoves.length);
+    const attackSquare = _legalMoves[moveIndex];
+    _legalMoves.splice(moveIndex, 1);
 
     return attack(targetBoard, attackSquare);
   }

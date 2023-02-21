@@ -124,4 +124,14 @@ test('comMove returns "hit" after hitting', () => {
   expect(hitMsg).toBe("Hit");
 });
 
-test("AI only makes legal moves", () => {});
+test("AI only makes legal moves", () => {
+  const p2Board = gameboard();
+  p2Board.placeShip(3, [1, 0], [1, 2]);
+  const p1 = player(true);
+
+  for (let i = 0; i < 100; i += 1) {
+    expect(p1.comMove(p2Board)).not.toBe(
+      "Invalid attack: square has already been attacked"
+    );
+  }
+});
