@@ -27,7 +27,7 @@
   height: var(--square-size);
   width: var(--square-size);
   border: 1px solid black;
-  background-color: red;
+  background-color: #009dc4;
 }
 
 .own-board {
@@ -42,5 +42,17 @@
   height: var(--square-size);
   width: var(--square-size);
   border: 1px solid black;
+  background-color: #009dc4;
+}
+
+.board-square.ship-unhit {
+  background-color: #8a8a8a;
+}
+
+.board-square.ship-hit {
   background-color: red;
+}
+
+.board-square.board-miss {
+  background-color: rgb(172, 255, 227);
 }

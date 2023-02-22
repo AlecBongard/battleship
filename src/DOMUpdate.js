@@ -32,6 +32,20 @@ const update = () => {
           `[${colIndex}, ${rowIndex}]`
         );
 
+        // check whether square is empty.
+        // if not, add class to it
+        if (square) {
+          if (typeof square === "object") {
+            if (square.isHit) {
+              boardSquare.classList.add("ship-hit");
+            } else {
+              boardSquare.classList.add("ship-unhit");
+            }
+          } else if (square === "miss") {
+            boardSquare.classList.add("board-miss");
+          }
+        }
+
         ownBoard.appendChild(boardSquare);
       });
     });

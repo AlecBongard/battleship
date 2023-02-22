@@ -6,6 +6,11 @@ const DOMUpdate = require("./DOMUpdate");
 
 const p1 = player(true);
 const p1Board = gameboard();
+p1Board.placeShip(3, [0, 0], [0, 2]);
+p1Board.placeShip(5, [1, 5], [5, 5]);
+p1Board.receiveAttack([0, 1]);
+p1Board.receiveAttack([2, 2]);
+
 const update = DOMUpdate();
 
 update.drawBoard(p1.map, p1Board.board);
