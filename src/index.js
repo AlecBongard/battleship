@@ -1,10 +1,11 @@
 import "./style.css";
 
-const ship = require("./ships");
 const gameboard = require("./gameboard");
 const player = require("./player");
-const DOMUpdate = require("./DOMUpdate.js");
+const DOMUpdate = require("./DOMUpdate");
 
+const p1 = player(true);
+const p1Board = gameboard();
 const update = DOMUpdate();
 
-update.drawBoard();
+update.drawBoard(p1.map, p1Board.board);

@@ -1,33 +1,40 @@
-const board = document.querySelector(".board");
 const map = document.querySelector(".map");
 const ownBoard = document.querySelector(".own-board");
 
 const update = () => {
-  // generated from scratch, but will later use board and map from gameboard and player
-  function drawBoard() {
-    for (let i = 0; i < 100; i += 1) {
-      const square = document.createElement("div");
-      square.classList.add("map-square");
+  function drawBoard(playerMap, playerBoard) {
+    playerMap.forEach((row, index) => {
+      const rowIndex = 9 - index;
 
-      const row = Math.floor(i / 10);
-      const col = i % 10;
+      row.forEach((square, squareIndex) => {
+        const colIndex = squareIndex % 10;
 
-      square.setAttribute("data-mapcoord", `[${row}, ${col}]`);
+        const mapSquare = document.createElement("div");
+        mapSquare.classList.add("map-square");
 
-      map.appendChild(square);
-    }
+        mapSquare.setAttribute("data-map-coord", `[${colIndex}, ${rowIndex}]`);
 
-    for (let i = 0; i < 100; i += 1) {
-      const square = document.createElement("div");
-      square.classList.add("board-square");
+        map.appendChild(mapSquare);
+      });
+    });
 
-      const row = Math.floor(i / 10);
-      const col = i % 10;
+    playerBoard.forEach((row, index) => {
+      const rowIndex = 9 - index;
 
-      square.setAttribute("data-boardcoord", `[${row}, ${col}]`);
+      row.forEach((square, squareIndex) => {
+        const colIndex = squareIndex % 10;
 
-      ownBoard.appendChild(square);
-    }
+        const boardSquare = document.createElement("div");
+        boardSquare.classList.add("board-square");
+
+        boardSquare.setAttribute(
+          "data-board-coord",
+          `[${colIndex}, ${rowIndex}]`
+        );
+
+        ownBoard.appendChild(boardSquare);
+      });
+    });
   }
 
   return {
