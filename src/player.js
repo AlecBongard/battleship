@@ -12,7 +12,7 @@ const player = (com) => {
 
     if (attackMsg === "Miss") {
       map[targetSquare[0]][targetSquare[1]] = attackMsg.toLowerCase();
-    } else {
+    } else if (attackMsg === "Hit") {
       map[targetSquare[0]][targetSquare[1]] = "hit";
     }
 

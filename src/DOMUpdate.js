@@ -78,9 +78,11 @@ const update = () => {
         const result = player.attack(opponentBoard, coord);
 
         // redraw map in order to remove listeners
-        map.textContent = "";
-        ownBoard.textContent = "";
-        drawBoard(player.map, playerBoard.board);
+        if (result !== "Invalid attack: square has already been attacked") {
+          map.textContent = "";
+          ownBoard.textContent = "";
+          drawBoard(player.map, playerBoard.board);
+        }
       });
     });
   }
