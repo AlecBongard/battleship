@@ -14,3 +14,5 @@ p1.attack(p1Board, [2, 2]);
 const update = DOMUpdate();
 
 update.drawBoard(p1.map, p1Board.board);
+
+update.makeClickable(p1, p1Board, p1Board);
