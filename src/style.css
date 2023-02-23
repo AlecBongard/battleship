@@ -56,3 +56,11 @@
 .board-square.board-miss {
   background-color: rgb(172, 255, 227);
 }
+
+.map-square.map-hit {
+  background-color: red;
+}
+
+.map-square.map-miss {
+  background-color: rgb(172, 255, 227);
+}

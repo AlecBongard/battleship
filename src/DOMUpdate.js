@@ -3,7 +3,7 @@ const ownBoard = document.querySelector(".own-board");
 
 const update = () => {
   function drawBoard(playerMap, playerBoard) {
-    playerMap.forEach((row, index) => {
+    playerMap.reverse().forEach((row, index) => {
       const rowIndex = 9 - index;
 
       row.forEach((square, squareIndex) => {
@@ -14,11 +14,19 @@ const update = () => {
 
         mapSquare.setAttribute("data-map-coord", `[${colIndex}, ${rowIndex}]`);
 
+        if (square) {
+          if (square === "hit") {
+            mapSquare.classList.add("map-hit");
+          } else if (square === "miss") {
+            mapSquare.classList.add("map-miss");
+          }
+        }
+
         map.appendChild(mapSquare);
       });
     });
 
-    playerBoard.forEach((row, index) => {
+    playerBoard.reverse().forEach((row, index) => {
       const rowIndex = 9 - index;
 
       row.forEach((square, squareIndex) => {
