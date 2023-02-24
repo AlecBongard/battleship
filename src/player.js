@@ -14,7 +14,10 @@ const player = (com) => {
       map[targetSquare[0]][targetSquare[1]] = attackMsg.toLowerCase();
     } else if (attackMsg === "Hit") {
       map[targetSquare[0]][targetSquare[1]] = "hit";
-    } else if (attackMsg === "You sunk my battleship") {
+    } else if (
+      attackMsg === "You sunk my battleship" ||
+      attackMsg === "All ships have been sunk."
+    ) {
       map[targetSquare[0]][targetSquare[1]] = "sunk";
     }
 

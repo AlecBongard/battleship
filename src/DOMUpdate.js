@@ -107,6 +107,7 @@ const update = (() => {
         // redraw map in order to remove listeners
         if (result !== "Invalid attack: square has already been attacked") {
           if (result === "All ships have been sunk.") {
+            drawBoard(player.map, playerBoard.board);
             console.log("game over");
           } else {
             _passTurn(opponent, opponentBoard, player, playerBoard);
