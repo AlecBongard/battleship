@@ -7,6 +7,28 @@ const player = (com) => {
     }
   })();
 
+  function _checkSunk(targetBoard, coord) {
+    const targetSquare = targetBoard[coord[0]][coord[1]];
+
+    if (targetSquare && typeof targetSquare === "object") {
+      if (targetSquare.ship.isSunk()) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  function _updateSunken(targetBoard) {
+    map.forEach((row, rowIndex) => {
+      row.forEach((col, colIndex) => {
+        if (_checkSunk(targetBoard, [rowIndex, colIndex])) {
+          map[rowIndex][colIndex] = "sunk";
+        }
+      });
+    });
+  }
+
   function attack(targetBoard, targetSquare) {
     const attackMsg = targetBoard.receiveAttack(targetSquare);
 
@@ -20,6 +42,8 @@ const player = (com) => {
     ) {
       map[targetSquare[0]][targetSquare[1]] = "sunk";
     }
+
+    _updateSunken(targetBoard.board);
 
     return attackMsg;
   }
