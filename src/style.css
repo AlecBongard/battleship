@@ -53,6 +53,10 @@
   background-color: red;
 }
 
+.board-square.ship-sunk {
+  background-color: #ff6565;
+}
+
 .board-square.board-miss {
   background-color: rgb(172, 255, 227);
 }
@@ -66,5 +70,5 @@
 }
 
 .map-square.map-sunk {
-  background-color: rgb(255, 101, 101);
+  background-color: #ff6565;
 }

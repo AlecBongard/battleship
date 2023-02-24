@@ -1,7 +1,7 @@
 const ship = (length) => {
   let _hits = 0;
 
-  function _isSunk() {
+  function isSunk() {
     if (_hits >= length) {
       return true;
     }
@@ -12,7 +12,7 @@ const ship = (length) => {
   function hit() {
     _hits += 1;
 
-    if (_isSunk()) {
+    if (isSunk()) {
       return "You sunk my battleship";
     }
 
@@ -21,6 +21,7 @@ const ship = (length) => {
 
   return {
     hit,
+    isSunk,
   };
 };
 

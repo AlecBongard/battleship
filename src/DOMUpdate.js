@@ -4,6 +4,9 @@ const ownBoard = document.querySelector(".own-board");
 
 const update = (() => {
   function drawBoard(playerMap, playerBoard) {
+    map.textContent = "";
+    ownBoard.textContent = "";
+
     playerMap
       .slice()
       .reverse()
@@ -57,7 +60,11 @@ const update = (() => {
           if (square) {
             if (typeof square === "object") {
               if (square.isHit) {
-                boardSquare.classList.add("ship-hit");
+                if (square.ship.isSunk()) {
+                  boardSquare.classList.add("ship-sunk");
+                } else {
+                  boardSquare.classList.add("ship-hit");
+                }
               } else {
                 boardSquare.classList.add("ship-unhit");
               }
@@ -78,10 +85,12 @@ const update = (() => {
     } else {
       const result = player.comMove(opponentBoard);
 
+      drawBoard(opponent.map, opponentBoard.board);
+
       if (result === "All ships have been sunk.") {
         console.log("game over");
       } else {
-        _passTurn(opponent, opponentBoard, player, playerBoard);
+        makeClickable(opponent, opponentBoard, player, playerBoard);
       }
     }
   }
@@ -100,8 +109,6 @@ const update = (() => {
           if (result === "All ships have been sunk.") {
             console.log("game over");
           } else {
-            map.textContent = "";
-            ownBoard.textContent = "";
             _passTurn(opponent, opponentBoard, player, playerBoard);
           }
         }
