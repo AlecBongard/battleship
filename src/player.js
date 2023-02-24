@@ -14,6 +14,8 @@ const player = (com) => {
       map[targetSquare[0]][targetSquare[1]] = attackMsg.toLowerCase();
     } else if (attackMsg === "Hit") {
       map[targetSquare[0]][targetSquare[1]] = "hit";
+    } else if (attackMsg === "You sunk my battleship") {
+      map[targetSquare[0]][targetSquare[1]] = "sunk";
     }
 
     return attackMsg;
@@ -33,11 +35,13 @@ const player = (com) => {
 
   function comMove(targetBoard) {
     // choose row and column of attacked square randomly
+
     const moveIndex = Math.floor(Math.random() * _legalMoves.length);
     const attackSquare = _legalMoves[moveIndex];
     _legalMoves.splice(moveIndex, 1);
 
-    return attack(targetBoard, attackSquare);
+    const result = attack(targetBoard, attackSquare);
+    return result;
   }
 
   return {

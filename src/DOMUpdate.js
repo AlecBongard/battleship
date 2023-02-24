@@ -26,6 +26,8 @@ const update = (() => {
               mapSquare.classList.add("map-hit");
             } else if (square === "miss") {
               mapSquare.classList.add("map-miss");
+            } else if (square === "sunk") {
+              mapSquare.classList.add("map-sunk");
             }
           }
 
@@ -74,13 +76,12 @@ const update = (() => {
       drawBoard(player.map, playerBoard.board);
       makeClickable(player, playerBoard, opponent, opponentBoard);
     } else {
-      const result = setTimeout(() => player.comMove(opponentBoard), 250);
+      const result = player.comMove(opponentBoard);
 
       if (result === "All ships have been sunk.") {
         console.log("game over");
       } else {
-        drawBoard(opponent.map, opponentBoard.board);
-        makeClickable(opponent, opponentBoard, player, playerBoard);
+        _passTurn(opponent, opponentBoard, player, playerBoard);
       }
     }
   }
