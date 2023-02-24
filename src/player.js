@@ -44,6 +44,7 @@ const player = (com) => {
     map,
     attack,
     comMove,
+    com,
   };
 };
 

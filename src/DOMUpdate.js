@@ -1,7 +1,8 @@
+/* eslint-disable no-use-before-define */
 const map = document.querySelector(".map");
 const ownBoard = document.querySelector(".own-board");
 
-const update = () => {
+const update = (() => {
   function drawBoard(playerMap, playerBoard) {
     playerMap
       .slice()
@@ -68,7 +69,23 @@ const update = () => {
       });
   }
 
-  function makeClickable(player, playerBoard, opponentBoard) {
+  function _passTurn(player, playerBoard, opponent, opponentBoard) {
+    if (player.com === false) {
+      drawBoard(player.map, playerBoard.board);
+      makeClickable(player, playerBoard, opponent, opponentBoard);
+    } else {
+      const result = setTimeout(() => player.comMove(opponentBoard), 250);
+
+      if (result === "All ships have been sunk.") {
+        console.log("game over");
+      } else {
+        drawBoard(opponent.map, opponentBoard.board);
+        makeClickable(opponent, opponentBoard, player, playerBoard);
+      }
+    }
+  }
+
+  function makeClickable(player, playerBoard, opponent, opponentBoard) {
     const mapSquares = document.querySelectorAll(".map-square");
 
     mapSquares.forEach((square) => {
@@ -79,9 +96,13 @@ const update = () => {
 
         // redraw map in order to remove listeners
         if (result !== "Invalid attack: square has already been attacked") {
-          map.textContent = "";
-          ownBoard.textContent = "";
-          drawBoard(player.map, playerBoard.board);
+          if (result === "All ships have been sunk.") {
+            console.log("game over");
+          } else {
+            map.textContent = "";
+            ownBoard.textContent = "";
+            _passTurn(opponent, opponentBoard, player, playerBoard);
+          }
         }
       });
     });
@@ -91,6 +112,6 @@ const update = () => {
     drawBoard,
     makeClickable,
   };
-};
+})();
 
 module.exports = update;

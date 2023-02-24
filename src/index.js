@@ -2,17 +2,16 @@ import "./style.css";
 
 const gameboard = require("./gameboard");
 const player = require("./player");
-const DOMUpdate = require("./DOMUpdate");
+const update = require("./DOMUpdate");
+const game = require("./game");
 
-const p1 = player(true);
+const p1 = player(false);
 const p1Board = gameboard();
-p1Board.placeShip(3, [0, 0], [0, 2]);
-p1Board.placeShip(5, [1, 5], [5, 5]);
-p1.attack(p1Board, [0, 1]);
-p1.attack(p1Board, [2, 2]);
+const p2 = player(true);
+const p2Board = gameboard();
 
-const update = DOMUpdate();
+game.placeShips(p1Board);
+game.placeShips(p2Board);
 
 update.drawBoard(p1.map, p1Board.board);
-
-update.makeClickable(p1, p1Board, p1Board);
+update.makeClickable(p1, p1Board, p2, p2Board);
