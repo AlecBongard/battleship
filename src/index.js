@@ -13,5 +13,6 @@ const p2Board = gameboard();
 game.placeShips(p1Board);
 game.placeShips(p2Board);
 
-update.drawBoard(p1.map, p1Board.board);
+update.drawBoard(p1.map, p1Board);
+
 update.makeClickable(p1, p1Board, p2, p2Board);

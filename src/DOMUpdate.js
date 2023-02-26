@@ -3,6 +3,37 @@ const map = document.querySelector(".map");
 const ownBoard = document.querySelector(".own-board");
 
 const update = (() => {
+  function drawShip(start, end, length) {
+    const ship = document.createElement("div");
+    ship.classList.add("ship");
+
+    const squareSize = 100 / 30;
+    let height = 1;
+    let width = 1;
+
+    if (end[0] - start[0] > 0) {
+      height = length * squareSize;
+      width = squareSize;
+    } else {
+      width = length * squareSize;
+      height = squareSize;
+    }
+
+    ship.style.height = `${height}vw`;
+    ship.style.width = `${width}vw`;
+
+    ship.style.bottom = `${squareSize * start[0]}vw`;
+    ship.style.left = `${squareSize * start[1]}vw`;
+
+    ownBoard.appendChild(ship);
+  }
+
+  function drawAllShips(board) {
+    board.ships.forEach((ship) => {
+      drawShip(ship.start, ship.end, ship.length);
+    });
+  }
+
   function drawBoard(playerMap, playerBoard) {
     map.textContent = "";
     ownBoard.textContent = "";
@@ -38,7 +69,7 @@ const update = (() => {
         });
       });
 
-    playerBoard
+    playerBoard.board
       .slice()
       .reverse()
       .forEach((row, index) => {
@@ -76,6 +107,8 @@ const update = (() => {
           ownBoard.appendChild(boardSquare);
         });
       });
+
+    drawAllShips(playerBoard);
   }
 
   function _passTurn(player, playerBoard, opponent, opponentBoard) {
@@ -85,7 +118,7 @@ const update = (() => {
     } else {
       const result = player.comMove(opponentBoard);
 
-      drawBoard(opponent.map, opponentBoard.board);
+      drawBoard(opponent.map, opponentBoard);
 
       if (result === "All ships have been sunk.") {
         console.log("game over");
@@ -107,7 +140,7 @@ const update = (() => {
         // redraw map in order to remove listeners
         if (result !== "Invalid attack: square has already been attacked") {
           if (result === "All ships have been sunk.") {
-            drawBoard(player.map, playerBoard.board);
+            drawBoard(player.map, playerBoard);
             console.log("game over");
           } else {
             _passTurn(opponent, opponentBoard, player, playerBoard);
@@ -120,6 +153,7 @@ const update = (() => {
   return {
     drawBoard,
     makeClickable,
+    drawShip,
   };
 })();
 

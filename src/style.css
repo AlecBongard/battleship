@@ -1,18 +1,16 @@
 :root {
   --view-size: calc(100vw / 3);
   --square-size: calc(var(--view-size) / 10);
-}
-
-.test {
-  height: 50px;
-  width: 50px;
-  background-color: red;
+  --water-color: #e6eefb;
+  --grid-lines: 0.5px solid black;
+  --miss: white;
 }
 
 .board {
   display: flex;
   justify-content: space-around;
   width: 100%;
+  position: relative;
 }
 
 .map {
@@ -26,8 +24,9 @@
   box-sizing: border-box;
   height: var(--square-size);
   width: var(--square-size);
-  border: 1px solid black;
-  background-color: #009dc4;
+  border: var(--grid-lines);
+  background-color: var(--water-color);
+  border-radius: 3px;
 }
 
 .own-board {
@@ -35,18 +34,20 @@
   width: var(--view-size);
   display: flex;
   flex-wrap: wrap;
+  position: relative;
 }
 
 .board-square {
   box-sizing: border-box;
   height: var(--square-size);
   width: var(--square-size);
-  border: 1px solid black;
-  background-color: #009dc4;
+  border: var(--grid-lines);
+  background-color: var(--water-color);
+  border-radius: 3px;
 }
 
 .board-square.ship-unhit {
-  background-color: #8a8a8a;
+  background-color: var(--water-color);
 }
 
 .board-square.ship-hit {
@@ -58,7 +59,7 @@
 }
 
 .board-square.board-miss {
-  background-color: rgb(172, 255, 227);
+  background-color: var(--miss);
 }
 
 .map-square.map-hit {
@@ -66,9 +67,17 @@
 }
 
 .map-square.map-miss {
-  background-color: rgb(172, 255, 227);
+  background-color: var(--miss);
 }
 
 .map-square.map-sunk {
   background-color: #ff6565;
+}
+
+.ship {
+  position: absolute;
+  border: 2px solid rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+  box-sizing: border-box;
 }

@@ -2,6 +2,7 @@ const ship = require("./ships");
 
 const gameboard = () => {
   const board = [];
+  const ships = [];
 
   (function _createBoard() {
     for (let i = 0; i < 10; i += 1) {
@@ -19,6 +20,12 @@ const gameboard = () => {
     }
 
     const newShip = ship(length);
+    ships.push({
+      ship: newShip,
+      length,
+      start,
+      end,
+    });
 
     for (let row = start[0]; end[0] - row >= 0; row += 1) {
       for (let col = start[1]; end[1] - col >= 0; col += 1) {
@@ -81,6 +88,7 @@ const gameboard = () => {
     board,
     placeShip,
     receiveAttack,
+    ships,
   };
 };
 
