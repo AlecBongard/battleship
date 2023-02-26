@@ -10,8 +10,10 @@ const p1Board = gameboard();
 const p2 = player(true);
 const p2Board = gameboard();
 
-game.placeShips(p1Board);
-game.placeShips(p2Board);
+// game.placeShips(p1Board);
+// game.placeShips(p2Board);
+p1Board.placeRandom();
+p2Board.placeRandom();
 
 update.drawBoard(p1.map, p1Board);
 

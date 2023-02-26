@@ -41,6 +41,55 @@ const gameboard = () => {
     return "Ship placed";
   }
 
+  // direction: 0 = vertical, 1 = horizontal
+  function _checkPathEmpty(main, secondary, length, direction) {
+    for (let i = main; i < main + length; i += 1) {
+      if (direction === 0) {
+        if (board[i][secondary]) {
+          return false;
+        }
+      } else if (board[secondary][i]) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  function _makeRandomPlacement(length) {
+    const randomSquare = Math.floor(Math.random() * length);
+    const secondary = Math.floor(Math.random() * 10);
+
+    // 0 = vertical, 1 = horizontal
+    const direction = Math.floor(Math.random() * 2);
+
+    if (_checkPathEmpty(randomSquare, secondary, length, direction)) {
+      if (direction === 0) {
+        placeShip(
+          length,
+          [randomSquare, secondary],
+          [randomSquare + (length - 1), secondary]
+        );
+      } else {
+        placeShip(
+          length,
+          [secondary, randomSquare],
+          [secondary, randomSquare + (length - 1)]
+        );
+      }
+    } else {
+      _makeRandomPlacement(length);
+    }
+  }
+
+  function placeRandom() {
+    _makeRandomPlacement(5);
+    _makeRandomPlacement(4);
+    _makeRandomPlacement(3);
+    _makeRandomPlacement(3);
+    _makeRandomPlacement(2);
+  }
+
   function _allSunk() {
     let sunk = true;
 
@@ -88,6 +137,7 @@ const gameboard = () => {
     board,
     placeShip,
     receiveAttack,
+    placeRandom,
     ships,
   };
 };

@@ -2,8 +2,9 @@
   --view-size: calc(100vw / 3);
   --square-size: calc(var(--view-size) / 10);
   --water-color: #e6eefb;
-  --grid-lines: 0.5px solid black;
+  --grid-lines: 0.5px solid rgb(104, 104, 104);
   --miss: white;
+  --hit: rgb(255, 133, 133);
 }
 
 .board {
@@ -76,8 +77,8 @@
 
 .ship {
   position: absolute;
-  border: 2px solid rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 0.25);
+  border: 2px solid rgb(69, 69, 69);
+  background-color: rgba(50, 50, 50, 0.25);
   border-radius: 3px;
   box-sizing: border-box;
 }
