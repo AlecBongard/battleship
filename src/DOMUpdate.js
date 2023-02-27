@@ -3,6 +3,7 @@ const map = document.querySelector(".map");
 const ownBoard = document.querySelector(".own-board");
 const info = document.querySelector(".info");
 const turnText = document.querySelector(".turn-text");
+const moveText = document.querySelector(".move-text");
 
 const update = (() => {
   function _writeTurn(player, over) {
@@ -163,6 +164,8 @@ const update = (() => {
 
         // redraw map in order to remove listeners
         if (result !== "Invalid attack: square has already been attacked") {
+          moveText.textContent = result;
+
           if (result === "All ships have been sunk.") {
             drawBoard(player.map, playerBoard);
             _writeTurn(player, true);
@@ -172,6 +175,8 @@ const update = (() => {
           } else {
             _passTurn(opponent, opponentBoard, player, playerBoard);
           }
+        }else{
+          moveText.textContent = `${result}. Try a different square.`;
         }
       });
     });
