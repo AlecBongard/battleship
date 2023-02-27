@@ -130,14 +130,22 @@ const update = (() => {
     info.appendChild(passButton);
 
     passButton.addEventListener("click", () => {
-      _passTurn(player, playerBoard, opponent, opponentBoard);
-      passButton.remove();
+      if (!player.com) {
+        _passTurn(player, playerBoard, opponent, opponentBoard);
+        passButton.remove();
+      } else {
+        passButton.remove();
+        _writeTurn(player, false);
+        setTimeout(() => {
+          _passTurn(player, playerBoard, opponent, opponentBoard);
+        }, 300);
+      }
     });
   }
 
   function _passTurn(player, playerBoard, opponent, opponentBoard) {
     if (player.com === false) {
-      drawBoard(player.map, playerBoard.board);
+      drawBoard(player.map, playerBoard);
       makeClickable(player, playerBoard, opponent, opponentBoard);
       _writeTurn(player, false);
     } else {
@@ -175,7 +183,7 @@ const update = (() => {
           } else {
             _passTurn(opponent, opponentBoard, player, playerBoard);
           }
-        }else{
+        } else {
           moveText.textContent = `${result}. Try a different square.`;
         }
       });
