@@ -1,5 +1,10 @@
-const player = (com) => {
+const player = (com, name = "Player 1") => {
   const map = [];
+  let playerName = name;
+
+  if (com) {
+    playerName = "Computer";
+  }
 
   (function _createMap() {
     for (let i = 0; i < 10; i += 1) {
@@ -76,6 +81,7 @@ const player = (com) => {
     attack,
     comMove,
     com,
+    playerName,
   };
 };
 

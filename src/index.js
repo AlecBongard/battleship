@@ -3,9 +3,10 @@ import "./style.css";
 const gameboard = require("./gameboard");
 const player = require("./player");
 const update = require("./DOMUpdate");
-const game = require("./game");
 
-const p1 = player(false);
+const info = document.querySelector("info");
+
+const p1 = player(false, "p1");
 const p1Board = gameboard();
 const p2 = player(true);
 const p2Board = gameboard();

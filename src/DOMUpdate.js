@@ -1,8 +1,18 @@
 /* eslint-disable no-use-before-define */
 const map = document.querySelector(".map");
 const ownBoard = document.querySelector(".own-board");
+const info = document.querySelector(".info");
+const turnText = document.querySelector(".turn-text");
 
 const update = (() => {
+  function _writeTurn(player, over) {
+    if (over) {
+      turnText.textContent = `Game over. ${player.playerName} wins.`;
+    } else {
+      turnText.textContent = `${player.playerName}'s turn`;
+    }
+  }
+
   function drawShip(start, end, length) {
     const ship = document.createElement("div");
     ship.classList.add("ship");
@@ -111,17 +121,31 @@ const update = (() => {
     drawAllShips(playerBoard);
   }
 
+  function _drawPassButton(player, playerBoard, opponent, opponentBoard) {
+    const passButton = document.createElement("button");
+    passButton.classList.add("pass-button");
+    passButton.textContent = "Pass turn";
+
+    info.appendChild(passButton);
+
+    passButton.addEventListener("click", () => {
+      _passTurn(player, playerBoard, opponent, opponentBoard);
+      passButton.remove();
+    });
+  }
+
   function _passTurn(player, playerBoard, opponent, opponentBoard) {
     if (player.com === false) {
       drawBoard(player.map, playerBoard.board);
       makeClickable(player, playerBoard, opponent, opponentBoard);
+      _writeTurn(player, false);
     } else {
       const result = player.comMove(opponentBoard);
-
       drawBoard(opponent.map, opponentBoard);
+      _writeTurn(opponent, false);
 
       if (result === "All ships have been sunk.") {
-        console.log("game over");
+        _writeTurn(player, true);
       } else {
         makeClickable(opponent, opponentBoard, player, playerBoard);
       }
@@ -141,7 +165,10 @@ const update = (() => {
         if (result !== "Invalid attack: square has already been attacked") {
           if (result === "All ships have been sunk.") {
             drawBoard(player.map, playerBoard);
-            console.log("game over");
+            _writeTurn(player, true);
+          } else if (player.com === false) {
+            drawBoard(player.map, playerBoard);
+            _drawPassButton(opponent, opponentBoard, player, playerBoard);
           } else {
             _passTurn(opponent, opponentBoard, player, playerBoard);
           }
