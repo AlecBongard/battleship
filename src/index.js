@@ -4,9 +4,8 @@ const gameboard = require("./gameboard");
 const player = require("./player");
 const update = require("./DOMUpdate");
 
-const info = document.querySelector(".info");
+const turnText = document.querySelector(".turn-text");
 const menu = document.querySelector(".menu");
-const playerForm = document.querySelector(".player-form");
 const p1Name = document.querySelector("#p1-name");
 const p2Name = document.querySelector("#p2-name");
 const AIcheck = document.querySelector("#p2-com");
@@ -16,9 +15,11 @@ AIcheck.addEventListener("click", () => {
   if (p2Name.classList.contains("name-disabled")) {
     p2Name.removeAttribute("disabled");
     p2Name.classList.remove("name-disabled");
+    p2Name.setAttribute("placeholder", "Player 2");
   } else {
     p2Name.classList.add("name-disabled");
     p2Name.setAttribute("disabled", null);
+    p2Name.setAttribute("placeholder", "Computer");
   }
 });
 
@@ -27,18 +28,24 @@ startBtn.addEventListener("click", (e) => {
 
   menu.style.visibility = "hidden";
 
-  const p1 = player(false, p1Name.value);
-  const p1Board = gameboard();
-
+  let p1;
   let p2;
-  let p2Board;
+
+  const p1Board = gameboard();
+  const p2Board = gameboard();
+
+  if (!p1Name.value) {
+    p1 = player(false, "Player 1");
+  } else {
+    p1 = player(false, p1Name.value);
+  }
 
   if (AIcheck.checked) {
     p2 = player(true);
-    p2Board = gameboard();
+  } else if (!p2Name.value) {
+    p2 = player(false, "Player 2");
   } else {
     p2 = player(false, p2Name.value);
-    p2Board = gameboard();
   }
 
   p1Board.placeRandom();
@@ -47,18 +54,6 @@ startBtn.addEventListener("click", (e) => {
   update.drawBoard(p1.map, p1Board);
 
   update.makeClickable(p1, p1Board, p2, p2Board);
+
+  turnText.textContent = `${p1.playerName}'s Turn`;
 });
-
-/*
-const p1 = player(false, "p1");
-const p1Board = gameboard();
-const p2 = player(true);
-const p2Board = gameboard();
-
-p1Board.placeRandom();
-p2Board.placeRandom();
-
-update.drawBoard(p1.map, p1Board);
-
-update.makeClickable(p1, p1Board, p2, p2Board);
-*/

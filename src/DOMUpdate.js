@@ -4,6 +4,7 @@ const ownBoard = document.querySelector(".own-board");
 const info = document.querySelector(".info");
 const turnText = document.querySelector(".turn-text");
 const moveText = document.querySelector(".move-text");
+const blind = document.querySelector(".blind");
 
 const update = (() => {
   function _writeTurn(player, over) {
@@ -131,7 +132,7 @@ const update = (() => {
 
     passButton.addEventListener("click", () => {
       if (!player.com) {
-        _passTurn(player, playerBoard, opponent, opponentBoard);
+        _drawBlind(player, playerBoard, opponent, opponentBoard);
         passButton.remove();
       } else {
         passButton.remove();
@@ -140,6 +141,26 @@ const update = (() => {
           _passTurn(player, playerBoard, opponent, opponentBoard);
         }, 300);
       }
+    });
+  }
+
+  function _drawBlind(player, playerBoard, opponent, opponentBoard) {
+    blind.textContent = "";
+    blind.style.visibility = "visible";
+
+    const passText = document.createElement("p");
+    passText.classList.add("pass-text");
+    passText.textContent = `Pass the device to ${player.playerName}`;
+
+    const turnButton = document.createElement("button");
+    turnButton.textContent = "Begin Turn";
+
+    blind.appendChild(passText);
+    blind.appendChild(turnButton);
+
+    turnButton.addEventListener("click", () => {
+      _passTurn(player, playerBoard, opponent, opponentBoard);
+      blind.style.visibility = "hidden";
     });
   }
 

@@ -11,6 +11,7 @@
   height: 100vh;
   width: 100vw;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   position: fixed;
@@ -18,11 +19,34 @@
   z-index: 100;
 }
 
+.field-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.player-form {
+  display: flex;
+  flex-direction: column;
+}
+
 .board {
   display: flex;
   justify-content: space-around;
   width: 100%;
   position: relative;
+}
+
+.blind {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
 }
 
 .info {
