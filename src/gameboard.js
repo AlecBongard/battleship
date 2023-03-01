@@ -42,7 +42,7 @@ const gameboard = () => {
   }
 
   // direction: 0 = vertical, 1 = horizontal
-  function _checkPathEmpty(main, secondary, length, direction) {
+  function checkPathEmpty(main, secondary, length, direction) {
     for (let i = main; i < main + length; i += 1) {
       if (direction === 0) {
         if (board[i][secondary]) {
@@ -63,7 +63,7 @@ const gameboard = () => {
     // 0 = vertical, 1 = horizontal
     const direction = Math.floor(Math.random() * 2);
 
-    if (_checkPathEmpty(randomSquare, secondary, length, direction)) {
+    if (checkPathEmpty(randomSquare, secondary, length, direction)) {
       if (direction === 0) {
         placeShip(
           length,
@@ -139,6 +139,7 @@ const gameboard = () => {
     receiveAttack,
     placeRandom,
     ships,
+    checkPathEmpty,
   };
 };
 

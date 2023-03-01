@@ -48,12 +48,13 @@ startBtn.addEventListener("click", (e) => {
     p2 = player(false, p2Name.value);
   }
 
-  p1Board.placeRandom();
+  // p1Board.placeRandom();
   p2Board.placeRandom();
 
-  update.drawBoard(p1.map, p1Board);
+  update.drawShipPlacer(p1, p1Board, p2, p2Board);
+  // update.drawBoard(p1.map, p1Board);
 
-  update.makeClickable(p1, p1Board, p2, p2Board);
+  // update.makeClickable(p1, p1Board, p2, p2Board);
 
   turnText.textContent = `${p1.playerName}'s Turn`;
 });

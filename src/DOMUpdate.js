@@ -15,7 +15,186 @@ const update = (() => {
     }
   }
 
-  function drawShip(start, end, length) {
+  function makePlaceable(
+    player,
+    board,
+    length,
+    boardDiv,
+    direction,
+    repeat = false
+  ) {
+    const squares = document.querySelectorAll("div.place-map>div.board-square");
+
+    squares.forEach((square) => {
+      square.addEventListener("mouseover", () => {
+        const coord = JSON.parse(square.getAttribute("data-board-coord"));
+
+        // using direction parameter to determine which direction to show ships
+        const secondary = direction;
+        const rootIndex = Math.abs(direction - 1);
+
+        const root = coord[rootIndex];
+        const shadow = [];
+
+        const extent = root + length;
+
+        const rotateBtn = document.querySelector(".rotate");
+        const startBtn = document.querySelector(".start-btn");
+
+        rotateBtn.addEventListener("click", () => {
+          boardDiv.textContent = "";
+          _drawOwnBoard(board, boardDiv);
+
+          makePlaceable(
+            player,
+            board,
+            length,
+            boardDiv,
+            Math.abs(direction - 1),
+            repeat
+          );
+          drawAllShips(board, boardDiv);
+        });
+
+        if (
+          extent < 11 &&
+          board.checkPathEmpty(root, coord[secondary], length, direction)
+        ) {
+          for (let i = root; i < root + length; i += 1) {
+            let shadowed;
+
+            if (direction === 1) {
+              shadowed = document.querySelector(
+                `[data-board-coord="[${i}, ${coord[1]}]"]`
+              );
+            } else {
+              shadowed = document.querySelector(
+                `[data-board-coord="[${coord[0]}, ${i}]"]`
+              );
+            }
+
+            shadow.push(shadowed);
+          }
+
+          shadow.forEach((shadowed) => {
+            shadowed.classList.add("selection-hover");
+          });
+
+          square.addEventListener("mouseleave", () => {
+            shadow.forEach((shadowed) => {
+              shadowed.classList.remove("selection-hover");
+            });
+          });
+
+          square.addEventListener("click", () => {
+            let end;
+
+            if (direction === 1) {
+              end = [coord[rootIndex] + (length - 1), coord[secondary]];
+            } else {
+              end = [coord[secondary], coord[rootIndex] + (length - 1)];
+            }
+
+            coord.reverse();
+            end.reverse();
+
+            board.placeShip(length, coord, end);
+
+            boardDiv.textContent = "";
+            _drawOwnBoard(board, boardDiv);
+            drawAllShips(board, boardDiv);
+
+            if (length === 5) {
+              makePlaceable(player, board, 4, boardDiv, direction, false);
+            } else if (length === 4) {
+              makePlaceable(player, board, 3, boardDiv, direction, true);
+            } else if (length === 3 && repeat) {
+              makePlaceable(player, board, 3, boardDiv, direction, false);
+            } else if (length === 3 && !repeat) {
+              makePlaceable(player, board, 2, boardDiv, direction, true);
+            } else if (length === 2 && repeat) {
+              makePlaceable(player, board, 2, boardDiv, direction, false);
+            } else if (length === 2 && !repeat) {
+              startBtn.style.visibility = "visible";
+            }
+          });
+        } else {
+          for (let i = root; i < 10 && i < root + length - 1; i += 1) {
+            let shadowed;
+
+            if (direction === 1) {
+              shadowed = document.querySelector(
+                `[data-board-coord="[${i}, ${coord[1]}]"]`
+              );
+            } else {
+              shadowed = document.querySelector(
+                `[data-board-coord="[${coord[0]}, ${i}]"]`
+              );
+            }
+
+            shadow.push(shadowed);
+          }
+
+          shadow.forEach((shadowed) => {
+            shadowed.classList.add("selection-hover-bad");
+          });
+
+          square.addEventListener("mouseleave", () => {
+            shadow.forEach((shadowed) => {
+              shadowed.classList.remove("selection-hover-bad");
+            });
+          });
+        }
+      });
+    });
+  }
+
+  function drawShipPlacer(player, gameboard, opp, oppBoard) {
+    blind.textContent = "";
+    blind.style.visibility = "visible";
+
+    const placerBg = document.createElement("div");
+    placerBg.classList.add("placer-bg");
+    placerBg.style.visibility = "visible";
+    blind.appendChild(placerBg);
+
+    const placementText = document.createElement("p");
+    placementText.classList.add("placement-text");
+    placementText.textContent = `${player.playerName}: place your ships`;
+    placerBg.appendChild(placementText);
+
+    const placeMap = document.createElement("div");
+    placeMap.classList.add("own-board");
+    placeMap.classList.add("place-map");
+    placerBg.appendChild(placeMap);
+
+    const rotateBtn = document.createElement("button");
+    rotateBtn.classList.add("rotate");
+    rotateBtn.textContent = "Rotate";
+
+    placerBg.appendChild(rotateBtn);
+
+    const startBtn = document.createElement("button");
+    startBtn.classList.add("start-btn");
+    startBtn.textContent = "Start Game";
+    startBtn.style.visibility = "hidden";
+
+    placerBg.appendChild(startBtn);
+
+    startBtn.addEventListener("click", () => {
+      blind.textContent = "";
+      blind.style.visibility = "hidden";
+      drawBoard(player.map, gameboard);
+      makeClickable(player, gameboard, opp, oppBoard);
+    });
+
+    _drawOwnBoard(gameboard, placeMap);
+    makePlaceable(player, gameboard, 5, placeMap, 1, false);
+
+    drawAllShips(gameboard, placeMap);
+  }
+
+  function drawShip(start, end, length, boardDiv) {
     const ship = document.createElement("div");
     ship.classList.add("ship");
 
@@ -37,19 +216,16 @@ const update = (() => {
     ship.style.bottom = `${squareSize * start[0]}vw`;
     ship.style.left = `${squareSize * start[1]}vw`;
 
-    ownBoard.appendChild(ship);
+    boardDiv.appendChild(ship);
   }
 
-  function drawAllShips(board) {
+  function drawAllShips(board, boardDiv) {
     board.ships.forEach((ship) => {
-      drawShip(ship.start, ship.end, ship.length);
+      drawShip(ship.start, ship.end, ship.length, boardDiv);
     });
   }
 
-  function drawBoard(playerMap, playerBoard) {
-    map.textContent = "";
-    ownBoard.textContent = "";
-
+  function _drawMap(playerMap) {
     playerMap
       .slice()
       .reverse()
@@ -80,7 +256,9 @@ const update = (() => {
           map.appendChild(mapSquare);
         });
       });
+  }
 
+  function _drawOwnBoard(playerBoard, boardDiv) {
     playerBoard.board
       .slice()
       .reverse()
@@ -116,11 +294,18 @@ const update = (() => {
             }
           }
 
-          ownBoard.appendChild(boardSquare);
+          boardDiv.appendChild(boardSquare);
         });
       });
+  }
 
-    drawAllShips(playerBoard);
+  function drawBoard(playerMap, playerBoard) {
+    map.textContent = "";
+    ownBoard.textContent = "";
+
+    _drawMap(playerMap);
+    _drawOwnBoard(playerBoard, ownBoard);
+    drawAllShips(playerBoard, ownBoard);
   }
 
   function _drawPassButton(player, playerBoard, opponent, opponentBoard) {
@@ -215,6 +400,7 @@ const update = (() => {
     drawBoard,
     makeClickable,
     drawShip,
+    drawShipPlacer,
   };
 })();
 
