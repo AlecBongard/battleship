@@ -23,6 +23,7 @@ const update = (() => {
     direction,
     repeat = false
   ) {
+    const currentBoard = boardDiv;
     const squares = document.querySelectorAll("div.place-map>div.board-square");
 
     squares.forEach((square) => {
@@ -42,7 +43,7 @@ const update = (() => {
         const startBtn = document.querySelector(".start-btn");
 
         rotateBtn.addEventListener("click", () => {
-          boardDiv.textContent = "";
+          currentBoard.textContent = "";
           _drawOwnBoard(board, boardDiv);
 
           makePlaceable(
@@ -100,7 +101,7 @@ const update = (() => {
 
             board.placeShip(length, coord, end);
 
-            boardDiv.textContent = "";
+            currentBoard.textContent = "";
             _drawOwnBoard(board, boardDiv);
             drawAllShips(board, boardDiv);
 
@@ -176,16 +177,29 @@ const update = (() => {
 
     const startBtn = document.createElement("button");
     startBtn.classList.add("start-btn");
-    startBtn.textContent = "Start Game";
+    startBtn.textContent = "End Placements";
     startBtn.style.visibility = "hidden";
 
     placerBg.appendChild(startBtn);
 
+    let oppPlaced = false;
+
+    // button will either set up the ship placer for p2 or start the game
     startBtn.addEventListener("click", () => {
-      blind.textContent = "";
-      blind.style.visibility = "hidden";
-      drawBoard(player.map, gameboard);
-      makeClickable(player, gameboard, opp, oppBoard);
+      if (!opp.com && !oppPlaced) {
+        placeMap.textContent = "";
+
+        // clone rotate button in order to remove listeners
+        const rotateClone = rotateBtn.cloneNode(true);
+        placerBg.replaceChild(rotateClone, rotateBtn);
+
+        _drawOwnBoard(oppBoard, placeMap);
+        makePlaceable(opp, oppBoard, 5, placeMap, 1, false);
+        drawAllShips(oppBoard, placeMap);
+        oppPlaced = true;
+      } else {
+        _drawBlind(player, gameboard, opp, oppBoard);
+      }
     });
 
     _drawOwnBoard(gameboard, placeMap);

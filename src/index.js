@@ -4,7 +4,6 @@ const gameboard = require("./gameboard");
 const player = require("./player");
 const update = require("./DOMUpdate");
 
-const turnText = document.querySelector(".turn-text");
 const menu = document.querySelector(".menu");
 const p1Name = document.querySelector("#p1-name");
 const p2Name = document.querySelector("#p2-name");
@@ -48,13 +47,5 @@ startBtn.addEventListener("click", (e) => {
     p2 = player(false, p2Name.value);
   }
 
-  // p1Board.placeRandom();
-  p2Board.placeRandom();
-
   update.drawShipPlacer(p1, p1Board, p2, p2Board);
-  // update.drawBoard(p1.map, p1Board);
-
-  // update.makeClickable(p1, p1Board, p2, p2Board);
-
-  turnText.textContent = `${p1.playerName}'s Turn`;
 });
