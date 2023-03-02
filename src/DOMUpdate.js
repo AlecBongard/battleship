@@ -197,8 +197,15 @@ const update = (() => {
         makePlaceable(opp, oppBoard, 5, placeMap, 1, false);
         drawAllShips(oppBoard, placeMap);
         oppPlaced = true;
-      } else {
+      } else if (!opp.com) {
         _drawBlind(player, gameboard, opp, oppBoard);
+      } else {
+        oppBoard.placeRandom();
+        drawBoard(player.map, gameboard);
+        makeClickable(player, gameboard, opp, oppBoard);
+        blind.style.visibility = "hidden";
+        placerBg.style.visibility = "hidden";
+        turnText.textContent = `${player.playerName}'s turn`;
       }
     });
 
