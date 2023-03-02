@@ -42,6 +42,8 @@ const update = (() => {
         const rotateBtn = document.querySelector(".rotate");
         const startBtn = document.querySelector(".start-btn");
 
+        rotateBtn.style.visibility = "visible";
+
         rotateBtn.addEventListener("click", () => {
           currentBoard.textContent = "";
           _drawOwnBoard(board, boardDiv);
@@ -116,6 +118,7 @@ const update = (() => {
             } else if (length === 2 && repeat) {
               makePlaceable(player, board, 2, boardDiv, direction, false);
             } else if (length === 2 && !repeat) {
+              rotateBtn.style.visibility = "hidden";
               startBtn.style.visibility = "visible";
             }
           });
