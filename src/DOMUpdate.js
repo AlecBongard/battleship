@@ -5,6 +5,7 @@ const turnText = document.querySelector(".turn-text");
 const moveText = document.querySelector(".move-text");
 const blind = document.querySelector(".blind");
 const btnWrap = document.querySelector(".btn-wrap");
+const info = document.querySelector(".info");
 
 const update = (() => {
   const squareSize = 50 / 30;
@@ -190,7 +191,9 @@ const update = (() => {
     let oppPlaced = false;
 
     // button will either set up the ship placer for p2 or start the game
-    startBtn.addEventListener("click", () => {
+    startBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+
       if (!opp.com && !oppPlaced) {
         placeMap.textContent = "";
 
@@ -361,6 +364,7 @@ const update = (() => {
   function _drawBlind(player, playerBoard, opponent, opponentBoard) {
     blind.textContent = "";
     blind.style.visibility = "visible";
+    info.style.visibility = "hidden";
 
     const passText = document.createElement("p");
     passText.classList.add("pass-text");
@@ -375,6 +379,7 @@ const update = (() => {
     turnButton.addEventListener("click", () => {
       _passTurn(player, playerBoard, opponent, opponentBoard);
       blind.style.visibility = "hidden";
+      info.style.visibility = "visible";
     });
   }
 
@@ -387,6 +392,7 @@ const update = (() => {
       const result = player.comMove(opponentBoard);
       drawBoard(opponent.map, opponentBoard);
       _writeTurn(opponent, false);
+      moveText.textContent = `${player.playerName}: ${result}`;
 
       if (result === "All ships have been sunk.") {
         _writeTurn(player, true);
@@ -407,7 +413,7 @@ const update = (() => {
 
         // redraw map in order to remove listeners
         if (result !== "Invalid attack: square has already been attacked") {
-          moveText.textContent = result;
+          moveText.textContent = `${player.playerName}: ${result}`;
 
           if (result === "All ships have been sunk.") {
             drawBoard(player.map, playerBoard);
