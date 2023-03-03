@@ -1,22 +1,91 @@
+@font-face{
+  font-family: 'Rubik Iso';
+  src: url('./fonts/Rubik_Iso/RubikIso-Regular.ttf');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PT Sans Narrow';
+  src: url(./fonts/PT_Sans_Narrow/PTSansNarrow-Regular.ttf);
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face{
+  font-family: 'PT Sans Narrow';
+  src: url(./fonts/PT_Sans_Narrow/PTSansNarrow-Bold.ttf);
+  font-weight: 700;
+  font-style: bold;
+}
+
 :root {
-  --view-size: calc(100vw / 3);
+  --view-size: calc(50vw / 3);
   --square-size: calc(var(--view-size) / 10);
   --water-color: #e6eefb;
   --grid-lines: 0.5px solid rgb(104, 104, 104);
   --miss: white;
   --hit: rgb(255, 133, 133);
+  --frame-width: 60vw;
+  --frame-height: 75vh;
+}
+
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-repeat: repeat;
+  font-family: 'PT Sans Narrow';
+}
+
+.board-wrap{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height:100%;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.frame{
+  box-sizing: border-box;
+  height: var(--frame-height);
+  width: var(--frame-width);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  position: relative;
+  background-color: white;
 }
 
 .menu {
-  height: 100vh;
-  width: 100vw;
+  height: var(--frame-height);
+  width: var(--frame-width);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: fixed;
+  position: absolute;
   background-color: #fff;
   z-index: 100;
+}
+
+.title{
+  width:min-content;
+}
+
+.title-text{
+  overflow: hidden;
+  font-family: 'Rubik Iso';
+  width: 0 auto;
+  font-size: 64px;
+  animation: typing 1.5s steps(15, end);
+}
+
+@keyframes typing{
+  from {width: 0}
+  to {width: 100%}
 }
 
 .board-square.selection-hover-bad {
@@ -37,6 +106,7 @@
   display: flex;
   justify-content: space-around;
   width: 100%;
+  height: 50%;
   position: relative;
 }
 
@@ -70,10 +140,13 @@
 }
 
 .info {
-  height: var(--view-size);
-  width: calc(var(--view-size) * 0.5);
+  height: 10%;
+  width: 75%;
   border: var(--grid-lines);
   border-radius: 3px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .map {

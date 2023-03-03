@@ -6,7 +6,11 @@ const turnText = document.querySelector(".turn-text");
 const moveText = document.querySelector(".move-text");
 const blind = document.querySelector(".blind");
 
+
+
 const update = (() => {
+  const squareSize = 50 / 30;
+
   function _writeTurn(player, over) {
     if (over) {
       turnText.textContent = `Game over. ${player.playerName} wins.`;
@@ -195,10 +199,11 @@ const update = (() => {
         // clone rotate button in order to remove listeners
         const rotateClone = rotateBtn.cloneNode(true);
         placerBg.replaceChild(rotateClone, rotateBtn);
-
+        placementText.textContent = `${opp.playerName}: place your ships`;
         _drawOwnBoard(oppBoard, placeMap);
         makePlaceable(opp, oppBoard, 5, placeMap, 1, false);
         drawAllShips(oppBoard, placeMap);
+
         oppPlaced = true;
         startBtn.style.visibility = "hidden";
       } else if (!opp.com) {
@@ -225,7 +230,7 @@ const update = (() => {
     const ship = document.createElement("div");
     ship.classList.add("ship");
 
-    const squareSize = 100 / 30;
+    
     let height = 1;
     let width = 1;
 

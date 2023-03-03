@@ -10,6 +10,7 @@ const p2Name = document.querySelector("#p2-name");
 const AIcheck = document.querySelector("#p2-com");
 const startBtn = document.querySelector("#start-button");
 
+
 AIcheck.addEventListener("click", () => {
   if (p2Name.classList.contains("name-disabled")) {
     p2Name.removeAttribute("disabled");
