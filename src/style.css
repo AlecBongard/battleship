@@ -27,13 +27,15 @@
   --miss: white;
   --hit: rgb(255, 133, 133);
   --frame-width: 60vw;
-  --frame-height: 60vh;
+  --frame-height: 65vh;
 }
 
 body {
   background-repeat: repeat;
   font-family: "PT Sans Narrow";
   overflow: hidden;
+  margin: 0;
+  padding: 0;
 }
 
 .content {
@@ -152,6 +154,7 @@ body {
   align-items: center;
   justify-content: center;
   z-index: 100;
+  margin: 10px;
 }
 
 .place-map > .selection-hover {

@@ -29,6 +29,26 @@ const update = (() => {
     const currentBoard = boardDiv;
     const squares = document.querySelectorAll("div.place-map>div.board-square");
 
+    const rotateBtn = document.querySelector(".rotate");
+    const startBtn = document.querySelector(".start-btn");
+
+    rotateBtn.style.visibility = "visible";
+
+    rotateBtn.addEventListener("click", () => {
+      currentBoard.textContent = "";
+      _drawOwnBoard(board, boardDiv);
+
+      makePlaceable(
+        player,
+        board,
+        length,
+        boardDiv,
+        Math.abs(direction - 1),
+        repeat
+      );
+      drawAllShips(board, boardDiv);
+    });
+
     squares.forEach((square) => {
       square.addEventListener("mouseover", () => {
         const coord = JSON.parse(square.getAttribute("data-board-coord"));
@@ -41,26 +61,6 @@ const update = (() => {
         const shadow = [];
 
         const extent = root + length;
-
-        const rotateBtn = document.querySelector(".rotate");
-        const startBtn = document.querySelector(".start-btn");
-
-        rotateBtn.style.visibility = "visible";
-
-        rotateBtn.addEventListener("click", () => {
-          currentBoard.textContent = "";
-          _drawOwnBoard(board, boardDiv);
-
-          makePlaceable(
-            player,
-            board,
-            length,
-            boardDiv,
-            Math.abs(direction - 1),
-            repeat
-          );
-          drawAllShips(board, boardDiv);
-        });
 
         if (
           extent < 11 &&
