@@ -365,6 +365,8 @@ const update = (() => {
     blind.textContent = "";
     blind.style.visibility = "visible";
     info.style.visibility = "hidden";
+    map.style.visibility = "hidden";
+    ownBoard.style.visibility = "hidden";
 
     const passText = document.createElement("p");
     passText.classList.add("pass-text");
@@ -380,6 +382,8 @@ const update = (() => {
       _passTurn(player, playerBoard, opponent, opponentBoard);
       blind.style.visibility = "hidden";
       info.style.visibility = "visible";
+      map.style.visibility = "visible";
+      ownBoard.style.visibility = "visible";
     });
   }
 
