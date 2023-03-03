@@ -1,12 +1,10 @@
 /* eslint-disable no-use-before-define */
 const map = document.querySelector(".map");
 const ownBoard = document.querySelector(".own-board");
-const info = document.querySelector(".info");
 const turnText = document.querySelector(".turn-text");
 const moveText = document.querySelector(".move-text");
 const blind = document.querySelector(".blind");
-
-
+const btnWrap = document.querySelector(".btn-wrap");
 
 const update = (() => {
   const squareSize = 50 / 30;
@@ -230,7 +228,6 @@ const update = (() => {
     const ship = document.createElement("div");
     ship.classList.add("ship");
 
-    
     let height = 1;
     let width = 1;
 
@@ -345,7 +342,7 @@ const update = (() => {
     passButton.classList.add("pass-button");
     passButton.textContent = "Pass turn";
 
-    info.appendChild(passButton);
+    btnWrap.appendChild(passButton);
 
     passButton.addEventListener("click", () => {
       if (!player.com) {

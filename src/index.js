@@ -10,12 +10,11 @@ const p2Name = document.querySelector("#p2-name");
 const AIcheck = document.querySelector("#p2-com");
 const startBtn = document.querySelector("#start-button");
 
-
 AIcheck.addEventListener("click", () => {
   if (p2Name.classList.contains("name-disabled")) {
     p2Name.removeAttribute("disabled");
     p2Name.classList.remove("name-disabled");
-    p2Name.setAttribute("placeholder", "Player 2");
+    p2Name.setAttribute("placeholder", "Player Two");
   } else {
     p2Name.classList.add("name-disabled");
     p2Name.setAttribute("disabled", null);
@@ -35,7 +34,7 @@ startBtn.addEventListener("click", (e) => {
   const p2Board = gameboard();
 
   if (!p1Name.value) {
-    p1 = player(false, "Player 1");
+    p1 = player(false, "Player One");
   } else {
     p1 = player(false, p1Name.value);
   }
@@ -43,7 +42,7 @@ startBtn.addEventListener("click", (e) => {
   if (AIcheck.checked) {
     p2 = player(true);
   } else if (!p2Name.value) {
-    p2 = player(false, "Player 2");
+    p2 = player(false, "Player Two");
   } else {
     p2 = player(false, p2Name.value);
   }
