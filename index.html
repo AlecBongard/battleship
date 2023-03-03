@@ -13,29 +13,34 @@
         <div class="menu">
           <div class="title"><p class="title-text">Battleship</p></div>
           <form class="player-form">
-            <div class="field-wrap">
-              <label for="p1-name">Player One name</label>
-              <input
-                type="text"
-                id="p1-name"
-                name="p1-name"
-                placeholder="Player One"
-              />
-            </div>
-            <div class="field-wrap">
-              <label for="p2-name">Player Two name</label>
-              <input
-                type="text"
-                id="p2-name"
-                name="p2-name"
-                placeholder="Computer"
-                class="name-disabled"
-                disabled
-              />
-            </div>
-            <div class="check-wrap">
-              <input type="checkbox" id="p2-com" name="p2-com" checked />
-              <label for="p2-com">AI opponent</label>
+            <div class="name-wrap">
+              <div class="field-wrap">
+                <label for="p1-name">Player One name</label>
+                <input
+                  type="text"
+                  id="p1-name"
+                  name="p1-name"
+                  placeholder="Player One"
+                />
+              </div>
+
+              <div class="p2-wrap">
+                <div class="field-wrap">
+                  <label for="p2-name">Player Two name</label>
+                  <input
+                    type="text"
+                    id="p2-name"
+                    name="p2-name"
+                    placeholder="Computer"
+                    class="name-disabled"
+                    disabled
+                  />
+                </div>
+                <div class="check-wrap">
+                  <input type="checkbox" id="p2-com" name="p2-com" checked />
+                  <label for="p2-com">AI opponent</label>
+                </div>
+              </div>
             </div>
             <button type="submit" id="start-button">Start Game</button>
           </form>
