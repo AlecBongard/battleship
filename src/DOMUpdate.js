@@ -8,8 +8,6 @@ const btnWrap = document.querySelector(".btn-wrap");
 const info = document.querySelector(".info");
 
 const update = (() => {
-  const squareSize = 50 / 30;
-
   function _writeTurn(player, over) {
     if (over) {
       turnText.textContent = `Game over. ${player.playerName} wins.`;
@@ -228,6 +226,15 @@ const update = (() => {
   }
 
   function drawShip(start, end, length, boardDiv) {
+    const maxWidth = window.matchMedia("(max-width: 1000px)");
+    let squareSize;
+
+    if (maxWidth.matches) {
+      squareSize = 90 / 30;
+    } else {
+      squareSize = 50 / 30;
+    }
+
     const ship = document.createElement("div");
     ship.classList.add("ship");
 
@@ -242,11 +249,19 @@ const update = (() => {
       height = squareSize;
     }
 
-    ship.style.height = `${height}vw`;
-    ship.style.width = `${width}vw`;
+    if (maxWidth.matches) {
+      ship.style.height = `${height}vh`;
+      ship.style.width = `${width}vh`;
 
-    ship.style.bottom = `${squareSize * start[0]}vw`;
-    ship.style.left = `${squareSize * start[1]}vw`;
+      ship.style.bottom = `${squareSize * start[0]}vh`;
+      ship.style.left = `${squareSize * start[1]}vh`;
+    } else {
+      ship.style.height = `${height}vw`;
+      ship.style.width = `${width}vw`;
+
+      ship.style.bottom = `${squareSize * start[0]}vw`;
+      ship.style.left = `${squareSize * start[1]}vw`;
+    }
 
     boardDiv.appendChild(ship);
   }
