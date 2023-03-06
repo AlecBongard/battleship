@@ -6,6 +6,7 @@ const moveText = document.querySelector(".move-text");
 const blind = document.querySelector(".blind");
 const btnWrap = document.querySelector(".btn-wrap");
 const info = document.querySelector(".info");
+const menu = document.querySelector(".menu");
 
 const update = (() => {
   function _writeTurn(player, over) {
@@ -355,6 +356,25 @@ const update = (() => {
     drawAllShips(playerBoard, ownBoard);
   }
 
+  function _drawRestartBtn() {
+    const restartBtn = document.createElement("button");
+    restartBtn.classList.add("restart-btn");
+    restartBtn.textContent = "Play Again";
+
+    btnWrap.appendChild(restartBtn);
+
+    restartBtn.addEventListener("click", () => {
+      map.textContent = "";
+      ownBoard.textContent = "";
+      turnText.textContent = "";
+      moveText.textContent = "";
+
+      menu.style.visibility = "visible";
+
+      restartBtn.remove();
+    });
+  }
+
   function _drawPassButton(player, playerBoard, opponent, opponentBoard) {
     const passButton = document.createElement("button");
     passButton.classList.add("pass-button");
@@ -437,6 +457,7 @@ const update = (() => {
           if (result === "All ships have been sunk.") {
             drawBoard(player.map, playerBoard);
             _writeTurn(player, true);
+            _drawRestartBtn();
           } else if (player.com === false) {
             drawBoard(player.map, playerBoard);
             _drawPassButton(opponent, opponentBoard, player, playerBoard);
