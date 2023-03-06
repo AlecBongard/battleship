@@ -65,14 +65,54 @@ const player = (com, name = "Player 1") => {
     return moveList;
   })();
 
+  let _attackList = [];
+
   function comMove(targetBoard) {
     // choose row and column of attacked square randomly
+    const legalStrings = _legalMoves.map((square) => JSON.stringify(square));
 
-    const moveIndex = Math.floor(Math.random() * _legalMoves.length);
-    const attackSquare = _legalMoves[moveIndex];
+    let attackSquare;
+    let moveIndex;
+
+    if (!_attackList.length) {
+      moveIndex = Math.floor(Math.random() * _legalMoves.length);
+      attackSquare = _legalMoves[moveIndex];
+    } else {
+      const attackIndex = Math.floor(Math.random() * _attackList.length);
+      [attackSquare] = _attackList.splice(attackIndex, 1);
+      moveIndex = legalStrings.indexOf(
+        `[${attackSquare[0]},${attackSquare[1]}]`
+      );
+    }
+
     _legalMoves.splice(moveIndex, 1);
+    legalStrings.splice(moveIndex, 1);
 
     const result = attack(targetBoard, attackSquare);
+
+    if (result === "Hit") {
+      const first = attackSquare[0];
+      const second = attackSquare[1];
+
+      if (legalStrings.includes(`[${first + 1},${second}]`)) {
+        _attackList.push([first + 1, second]);
+      }
+
+      if (legalStrings.includes(`[${first - 1},${second}]`)) {
+        _attackList.push([first - 1, second]);
+      }
+
+      if (legalStrings.includes(`[${first},${second + 1}]`)) {
+        _attackList.push([first, second + 1]);
+      }
+
+      if (legalStrings.includes(`[${first},${second - 1}]`)) {
+        _attackList.push([first, second - 1]);
+      }
+    } else if (result === "You sunk my battleship") {
+      _attackList = [];
+    }
+
     return result;
   }
 
