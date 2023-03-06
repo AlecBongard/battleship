@@ -67,9 +67,40 @@ const player = (com, name = "Player 1") => {
 
   let _attackList = [];
 
+  function _updateAttackList(stringList) {
+    _attackList = [];
+
+    map.forEach((row, rowIndex) => {
+      row.forEach((col, colIndex) => {
+        if (map[rowIndex][colIndex] === "hit") {
+          const first = rowIndex;
+          const second = colIndex;
+
+          if (stringList.includes(`[${first + 1},${second}]`)) {
+            _attackList.push([first + 1, second]);
+          }
+
+          if (stringList.includes(`[${first - 1},${second}]`)) {
+            _attackList.push([first - 1, second]);
+          }
+
+          if (stringList.includes(`[${first},${second + 1}]`)) {
+            _attackList.push([first, second + 1]);
+          }
+
+          if (stringList.includes(`[${first},${second - 1}]`)) {
+            _attackList.push([first, second - 1]);
+          }
+        }
+      });
+    });
+    console.log(_attackList);
+  }
+
   function comMove(targetBoard) {
     // choose row and column of attacked square randomly
     const legalStrings = _legalMoves.map((square) => JSON.stringify(square));
+    _updateAttackList(legalStrings);
 
     let attackSquare;
     let moveIndex;
@@ -89,29 +120,6 @@ const player = (com, name = "Player 1") => {
     legalStrings.splice(moveIndex, 1);
 
     const result = attack(targetBoard, attackSquare);
-
-    if (result === "Hit") {
-      const first = attackSquare[0];
-      const second = attackSquare[1];
-
-      if (legalStrings.includes(`[${first + 1},${second}]`)) {
-        _attackList.push([first + 1, second]);
-      }
-
-      if (legalStrings.includes(`[${first - 1},${second}]`)) {
-        _attackList.push([first - 1, second]);
-      }
-
-      if (legalStrings.includes(`[${first},${second + 1}]`)) {
-        _attackList.push([first, second + 1]);
-      }
-
-      if (legalStrings.includes(`[${first},${second - 1}]`)) {
-        _attackList.push([first, second - 1]);
-      }
-    } else if (result === "You sunk my battleship") {
-      _attackList = [];
-    }
 
     return result;
   }
