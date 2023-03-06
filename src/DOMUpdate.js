@@ -435,6 +435,7 @@ const update = (() => {
 
       if (result === "All ships have been sunk.") {
         _writeTurn(player, true);
+        _drawRestartBtn();
       } else {
         makeClickable(opponent, opponentBoard, player, playerBoard);
       }

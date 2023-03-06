@@ -94,7 +94,6 @@ const player = (com, name = "Player 1") => {
         }
       });
     });
-    console.log(_attackList);
   }
 
   function comMove(targetBoard) {
